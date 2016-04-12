@@ -1,0 +1,15 @@
+\BOOKMARK [-1][-]{part.1}{I Introducc\363n al paradigma bayesiano}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Paradigma Bayesiano}{part.1}% 2
+\BOOKMARK [1][-]{section.1.1}{Inferencia Estad\355stica y el Proceso de Aprendizaje}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{Predicci\363n}{chapter.1}% 4
+\BOOKMARK [0][-]{chapter.2}{Elementos de la Teor\355a de Decisi\363n}{part.1}% 5
+\BOOKMARK [1][-]{section.2.1}{Estimaci\363n y Predicci\363n Puntual}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.2}{Inferencia y Predicci\363n General}{chapter.2}% 7
+\BOOKMARK [0][-]{chapter.3}{Integraci\363n de Monte Carlo}{part.1}% 8
+\BOOKMARK [1][-]{section.3.1}{Muestreo por Importancia}{chapter.3}% 9
+\BOOKMARK [1][-]{section.3.2}{Muestreo-Remuestreo por Importancia}{chapter.3}% 10
+\BOOKMARK [1][-]{section.3.3}{Monte Carlo v\355a Cadenas de Markov}{chapter.3}% 11
+\BOOKMARK [1][-]{section.3.4}{Algoritmo de Metropolis-Hastings \(M-H\)}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.5}{Muestreador de Gibbs}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.6}{MCCM con Salto Reversible}{chapter.3}% 14
+\BOOKMARK [1][-]{section.3.7}{Consideraciones Generales}{chapter.3}% 15

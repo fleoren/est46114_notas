@@ -185,12 +185,12 @@
 \mainmatter
 
 %	----------------------------
-%		Introducc\'on al paradigma bayesiano
+%		Introducción al paradigma bayesiano
 %	----------------------------
-\part{Introducc\'on al paradigma bayesiano}
+\part{Introducción al paradigma bayesiano}
 
 %	----------------------------
-%		Ch1. Probabilidad e Inferencia Estad�stica
+%		Ch1. Paradigma bayesino
 %	----------------------------
 \chapter{Paradigma Bayesiano}
 
@@ -562,9 +562,19 @@ Existen diferentes consideraciones que se deben tomar en cuenta al momento de im
 Para el caso de MCCM con salto reversible, la verificación de convergencia de la cadena es aún más complicada. En principio, es posible monitorear la convergencia de la cadena para el movimiento entre modelos o en aquellas cantidades o parámetros comunes entre ellos. Pero dado que las visitas de los modelos son aleatorias, el número de muestras dentro de cada modelos es aleatorio y para algunos de los modelos las cantidades observadas no son suficientes para monitorear la convergencia de la cadena dentro de esos modelos en particular.
 
 En la siguiente sección realizaremos una breve descripción acerca de las series de tiempo. Describiremos algunos de los modelos más usados para el análisis y predicción de series de tiempo, así como algunos métodos de inferencia y predicción Bayesiana. 
+
+%	----------------------------
+%		Modelos de regresión
+%	----------------------------
+\part{Modelos de Regresión}
+
+%	----------------------------
+%		Ch1. Fundamentos de los Modelos de Regresión
+%	----------------------------
+\chapter{Fundamentos de los Modelos de Regresión}
 	
 %=======================================================
-%		References
+%		Bibliografía
 %=======================================================
 \bibliographystyle{apalike}
 \bibliography{References_JCMO}

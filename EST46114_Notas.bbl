@@ -1,0 +1,88 @@
+\begin{thebibliography}{}
+
+\bibitem[Bernardo, 1979]{Bernardo_ExpUti}
+Bernardo, J.~M. (1979).
+\newblock Expected information as expected utility.
+\newblock {\em The Annals of Statistics}, 7:686--690.
+
+\bibitem[Bernardo and Smith, 2000]{BernardoSmith_BayesBook}
+Bernardo, J.~M. and Smith, A.~F.~M. (2000).
+\newblock {\em Bayesian Theory}.
+\newblock John Wiley \& Sons., Chichester.
+
+\bibitem[Deelstra and Plantin, 2014]{DeelstraPlantin_RiskTheoryBook}
+Deelstra, G. and Plantin, G. (2014).
+\newblock {\em Risk Theory and Reinsurance}.
+\newblock Springer, New York.
+
+\bibitem[Godsill, 2001]{Godsill_MCMCModelUncertainty}
+Godsill, S.~T. (2001).
+\newblock On the relationship between {MCMC} model uncertainty methods.
+\newblock {\em Journal of Computational and Graphical Statistics},
+  10(2):230--248.
+
+\bibitem[Green, 1995]{Green_MCMCRJ}
+Green, P.~J. (1995).
+\newblock Reversible jump {M}arkov chain {M}onte {C}arlo computation and
+  {B}ayesian model determination.
+\newblock {\em Biometrika}, 82:711--732.
+
+\bibitem[Kaas et~al., 2001]{Kass_etal_ModernActuarialBook}
+Kaas, R., Goovaerts, M., Dhaene, J., and Denuit, M. (2001).
+\newblock {\em Modern Actuarial Risk Theory}.
+\newblock Kluwer Academic Publishers, Berlin.
+
+\bibitem[Klugman et~al., 2012]{Klugman_etal_LossModelsBook}
+Klugman, S., Panjer, H., and Willmot, G. (2012).
+\newblock {\em Loss Models From Data to Decisions}.
+\newblock John Wiley \& Sons, London.
+
+\bibitem[Lindley, 1957]{Lindley_StatisticalParadox}
+Lindley, D.~V. (1957).
+\newblock A statistical paradox.
+\newblock {\em Biometrika}, 44(1-2):187--192.
+
+\bibitem[Melnikov, 2011]{Melnikov_RiskAnalysisFinance}
+Melnikov, A. (2011).
+\newblock {\em Risk Analysis in Fianance and Insurance}.
+\newblock Chapman \& Hall, London.
+
+\bibitem[Panjer, 2006]{Panjer_OperationalRisks}
+Panjer, H.~H. (2006).
+\newblock {\em Operational Risks: Modeling Analytics}.
+\newblock Wiley, New Jersey.
+
+\bibitem[Robert and Casella, 2004]{RobertCasella_MCMCBook}
+Robert, C.~P. and Casella, G. (2004).
+\newblock {\em Monte Carlo Statistical Methods}.
+\newblock Springer, New York.
+
+\bibitem[Savage, 1972]{Savage_FoundationsStatistics}
+Savage, L.~J. (1972).
+\newblock {\em The Foundations of Statistics}.
+\newblock Dover Publications, New York.
+
+\bibitem[Shevchenko, 2011]{Shevchenko_BayesianOperationalRiskBook}
+Shevchenko, P.~V. (2011).
+\newblock {\em Modelling Operational Risk Using Bayesian Inference}.
+\newblock Springer, New York.
+
+\bibitem[{Society of Actuaries}, 1965]{SOA_IntCollectiveRisk}
+{Society of Actuaries} (1965).
+\newblock An introduction to collective risk modelling and its application to
+  stop-loss reinsurance.
+
+\bibitem[{Society of Actuaries}, 1982]{SOA_PracticalRiskTheory}
+{Society of Actuaries} (1982).
+\newblock The practical uses of risk theory.
+
+\bibitem[{Society of Actuaries}, 2010]{SOA_NewAppOperationalRisk}
+{Society of Actuaries} (2010).
+\newblock A new approach for managing operational risk.
+
+\bibitem[Tierney, 1994]{Tierney_MCMC}
+Tierney, L. (1994).
+\newblock Markov chains for exploring distributions (with discussion).
+\newblock {\em The Annals of Statistics}, 22:1701--1722.
+
+\end{thebibliography}
