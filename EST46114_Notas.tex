@@ -1,0 +1,1573 @@
+%----------------------------------------------------------
+%
+\documentclass[letterpaper,titlepage,oneside,leqno,12pt]{book}%
+%
+%----------------------------------------------------------
+% This is a sample document for the standard LaTeX Book Class
+% Class options
+%       --  Body text point size:
+%                        10pt (default), 11pt, 12pt
+%       --  Paper size:  letterpaper (8.5x11 inch, default)
+%                        a4paper, a5paper, b5paper,
+%                        legalpaper, executivepaper
+%       --  Orientation (portrait is the default):
+%                        landscape
+%       --  Printside:   oneside, twoside (default)
+%       --  Quality:     final(default), draft
+%       --  Title page:  titlepage, notitlepage
+%       --  Columns:     onecolumn (default), twocolumn
+%       --  Start chapter on left:
+%                        openright(no, default), openany
+%       --  Equation numbering (equation numbers on right is the default):
+%                        leqno
+%       --  Displayed equations (centered is the default):
+%                        fleqn (flush left)
+%       --  Open bibliography style (closed bibliography is the default):
+%                        openbib
+% For instance the command
+%          \documentclass[a4paper,12pt,reqno]{book}
+% ensures that the paper size is a4, fonts are typeset at the size 12p
+% and the equation numbers are on the right side.
+%
+%   --------------------------------
+%               Packages
+%   --------------------------------
+\usepackage{amsmath}%
+\usepackage{amsfonts}%
+\usepackage{amssymb}%
+\usepackage{graphicx}
+
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[spanish]{babel}
+\usepackage[left=3.0cm,top=3.0cm,bottom=3.0cm,right=3.0cm]{geometry}
+\usepackage[pdftex]{graphicx}
+\usepackage[
+	bookmarks=true,         	% show bookmarks bar?
+	unicode=false,          	% non-Latin characters in Acrobat’s bookmarks
+	pdftoolbar=true,        	% show Acrobat’s toolbar?
+	pdfmenubar=true,        	% show Acrobat’s menu?
+	letterpaper,
+	colorlinks=true,       		% false: boxed links; true: colored links
+	allcolors=blue,          	% color of internal links (change box color with linkbordercolor)
+	pdfpagemode=none,
+	pdftitle={},
+	pdfauthor={Juan Carlos Martinez-Ovando},
+	pdfcreator={$ $Id: ACT11302_Notas.de.Clase.tex,v 1.28 2015/10/20 $ $},
+	pdfsubject={Modelos de perida, Teoria de ruina},
+	pdfkeywords={Inferencia frecuentista y bayesiana}
+	]{hyperref}
+%\usepackage[plainpages=false, colorlinks, allcolors=blue]{hyperref}
+\usepackage[plainpages=false,colorlinks,citecolor=Sepia,linkcolor=OliveGreen]{hyperref}
+\usepackage[latin1]{inputenc}
+\usepackage[round]{natbib}
+
+%	Continued figures
+%\DeclareCaptionFormat{cont}{#1 (cont.)#2#3\par}
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png,.jpg}
+
+%	Redefenining numbering for subfigures
+\renewcommand\thesubfigure{\roman{subfigure}}
+
+%----------------------------------------------------------
+\newtheorem{theorem}{Teorema}
+\newtheorem{acknowledgement}[theorem]{Reconocimientos}
+%\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axioma}
+\newtheorem{case}[theorem]{Caso}
+\newtheorem{claim}[theorem]{Aseveraci\'on}
+\newtheorem{conclusion}[theorem]{Conclusi\'on}
+\newtheorem{condition}[theorem]{Condici\'on}
+\newtheorem{conjecture}[theorem]{Conjectura}
+\newtheorem{corollary}[theorem]{Corolario}
+\newtheorem{criterion}[theorem]{Criterio}
+\newtheorem{definition}[theorem]{Definici\'on}
+\newtheorem{example}[theorem]{Ejemplo}
+\newtheorem{exercise}[theorem]{Ejercicio}
+\newtheorem{lemma}[theorem]{Lema}
+\newtheorem{model}[theorem]{Modelo}
+\newtheorem{notation}[theorem]{Notaci\'on}
+\newtheorem{problem}[theorem]{Problema}
+\newtheorem{proposition}[theorem]{Proposici\'on}
+\newtheorem{remark}[theorem]{Nota}
+\newtheorem{solution}[theorem]{Soluci\'on}
+\newtheorem{summary}[theorem]{Resumen}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%\newenvironment{proof}[1][Proof]{\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+%\renewenvironment{case}[1][Case.]{\begin{trivlist}\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\numberwithin{equation}{chapter}
+
+%   --------------------------------
+%               Notation
+%   --------------------------------
+%\newcommand{\indicator}{\boldsymbol{1}}
+\newcommand{\indicator}{\mathbb{I}}
+\newcommand{\incy}{\Delta y}
+\newcommand{\GaD}{\text{Ga}} 
+\newcommand{\PaD}{\text{Pa}} 
+\newcommand{\NormD}{\text{N}} 
+\newcommand{\LND}{\text{LN}} 
+\newcommand{\PoD}{\text{Po}} 
+\newcommand{\ExpD}{\text{Exp}} 
+\newcommand{\BeD}{\text{Be}} 
+\newcommand{\BinD}{\text{Bin}} 
+\newcommand{\BinND}{\text{BinN}} 
+\newcommand{\GeoD}{\text{Geo}} 
+\newcommand{\ABzeroD}{(\alpha,\beta,0)}
+\newcommand{\ABoneD}{(\alpha,\beta,1)}
+
+\renewcommand{\Pr}{\mathbb{P}} 
+\newcommand{\dd}{\text{d}}
+\newcommand{\Dirac}{\delta}}
+\newcommand{\Expec}{\mathbb{E}} 
+\newcommand{\var}{\text{var}} 
+\newcommand{\riskvar}{\text{VaR}} 
+\newcommand{\riskcvar}{\text{CVaR}} 
+\newcommand{\riskcvvar}{\text{varCVaR}} 
+\newcommand{\ctaile}{\text{CTE}} 
+
+
+%----------------------------------------------------------
+\begin{document}
+
+\frontmatter
+\title{	{\large \sc Instituto Tecnol\'ogico Aut\'onomo de M\'exico}\\
+			\vspace{3.5cm}
+			EST-46114: M\'etodos Multivariados\\
+			\vspace{0.75cm}
+			{\large Inferencia bayesiana en problemas $p>>n$}\\
+			\vspace{1.5cm}
+			{\large Notas de Clase}
+		}
+\author{	Juan Carlos Mart\'inez-Ovando\\
+			\vspace{0.5cm}
+			\textcolor{blue}{\small \tt juan.martinez.ovando@itam.mx}
+		}
+\date{	\textcolor{blue}{Versi\'on: \today}
+		}
+\maketitle
+\tableofcontents
+
+\def\dsp{\def\baselinestretch{1.65}\large\normalsize}\dsp
+%\pagestyle{fancy}
+\pagestyle{plain}
+\pagenumbering{arabic}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\renewcommand{\theequation}{\thechapter.\arabic{equation}}
+\renewcommand{\thetable}{\thechapter.\arabic{table}}
+\renewcommand{\thealgorithm}{\thechapter.\arabic{algorithm}}
+
+%	----------------------------
+%		Ch0. Prefacio
+%	----------------------------
+\chapter*{Prefacio}
+
+   Estas notas se basan en las siguientes referencias: 
+   \cite{DeelstraPlantin_RiskTheoryBook}, 
+	\cite{Kass_etal_ModernActuarialBook}, 
+	\cite{Klugman_etal_LossModelsBook},
+	\cite{Melnikov_RiskAnalysisFinance}, 
+	\cite{Panjer_OperationalRisks}, 
+	\cite{Shevchenko_BayesianOperationalRiskBook}, 
+	\cite{SOA_IntCollectiveRisk}, 
+	\cite{SOA_PracticalRiskTheory}, y
+	\cite{SOA_NewAppOperationalRisk}.
+   Su contenido est\'a en etapa inicial de desarrollo.
+
+
+\mainmatter
+
+%	----------------------------
+%		Fundamentos de Estad\'istica
+%	----------------------------
+\part{Fundamentos de Estad\'istica}
+
+%	----------------------------
+%		Ch1. Probabilidad e Inferencia Estadística
+%	----------------------------
+\chapter{Probabilidad e Inferencia Estadística}
+
+	\section{Variables aleatorias y funciones de distribución}
+   Muchos eventos en nuestra vida cotidiana nos resultan inciertos en función de un desconocimiento o falta de control sobre su realización. Nuestra apreciación de la incertidumbre asociada con esos modelos está en función de la cantidad de información que tengamos acerca de la posible realización. De hecho, muchos eventos son igualmente inciertos o ciertos para diferentes personas. \'?A qué nos referimos con esto? 
+   
+   La cuantificación de los posibles resultados de un evento se conoce intuitivamente como una variable aleatoria.
+
+   Sea $X$ una variable aleatoria, con soporte en $\mathcal{X}$ y función de distribución de probabilidades, $F(x)$ para $x\in\mathcal{X}$.\footnote{Recuerde que la función de distribución es creciente y continua por la derecha y está acotada en el intervalo $[0,1]$.} Asociado con $F$ se define la función de densidad de probabilidad, $f$, si $X$ es absolutamente continua, o la función de masa de probabilidad, $f$, si $X$ es discreta, i.e.
+   \begin{eqnarray}
+      F(x) & = & \int_{-\infty}^{x}f(y)dy, \nonumber \\
+      & \text{\'o} & \nonumber \\
+      F(x) & = & \sum_{y \leq x}f(y), \nonumber
+   \end{eqnarray}
+   con $y$ en $\mathcal{X}$.
+   
+   Complementariamente, definimos la función de supervivencia, $S(x)$, como la probabilidad de que $X$ sea mayor que un cierto valor $x$, i.e.
+   \begin{equation}
+      S(x)=\Pr(X>x)=1-F(x), \nonumber
+   \end{equation}
+   para $x$ en $\mathcal{X}$. La función de supervivencia se utiliza ampliamente para el análisis de datos de duración (tiempo para que suceda un evento), o para estudiar eventos extremos. El área de la estadística encargada del estudio de datos de duración se conoce como {\it Análisis de Supervivencia}.
+   
+   En el análisis de supervivencia, resulta necesario trabajar con la función que mide el cambio instantáneo en la duración, condicional en que la variable aleatoria $X$ haya superado un cierto umbral de tiempo, digamos $x$. La función que mide tal cambio instantáneo se conoce como función {\it hazard} (o función de riesgo), y se define como el siguiente cociente,
+   \begin{equation}
+      h(x) =
+         \frac{\lim_{\varepsilon\rightarrow 0}Pr(x-\varepsilon \leq X < x+\varepsilon,X>x)}{Pr(X>x)}
+         =
+         \frac{-\frac{\partial}{\partial x}S(x)}{S(x)}
+         =
+         \frac{f(x)}{S(x)}. 
+         \nonumber
+   \end{equation}
+   La función de riesgo, descrita arriba, se define de manera análoga para variables aleatorias discretas.
+   
+   \section{Momentos, cuantiles, función característica, función generadora de momentos}
+   
+   El $k$-ésimo momento de una variable aleatoria, $X$, con función de distribución de probabilidades se define como 
+   \begin{equation}
+      \mathbb{E}(X^{k})=\int x^{k} F(d x),
+   \end{equation}
+   para todo $k$ entero positivo. Cuando $X$ es absolutamente continua, $F(d x) =f(x)dx$, y cuando $X$ es una variable aleatoria discreta, $\mathbb{E}(X^{k})=\sum_{x\in\mathcal{x}x^{k}p(x)}$.
+   
+   Los momentos centrales de una variable aleatoria, se definen análogamente para la variable aleatoria $X$ centrada en su media (primer momento), i.e. $\mathbb{E}((X-\mu)^{k})$, donde $\mu = \mathbb{E}(X)$.
+   
+   Se da el caso también que algunas variables aleatorias sean definidas por arriba (o debajo) de un cierto umbral. Estas variables aleatorias se conocen como variables aleatorias censuradas. Por ejemplo, una variable aleatoria $X$ que tiene soporte en la recta real, puede estar censurada por encima del umbral $a$, i.e. su soporte sería el subconjunto de $\mathcal{X}$,
+   \begin{equation}
+      \mathcal{X}_{+}=\{x\in \mathcal{X}:x\geq a\},\nonumber
+   \end{equation}
+   para $a$ en $\mathcal{X}$.
+   
+   Variables censuradas de esta forma se emplean para análizar variables de pérdida en exceso de un valor, i.e. variables aleatorias de la forma
+   \begin{equation}
+      Y = \min\{X,a\},\nonumber
+   \end{equation}
+   donde $X$ es una variable aleatoria con soporte en la recta real y $a$ es un valor fijo predeterminado.   
+   
+	\section{Datos e incertidumbre}
+   
+	\section{Paradigmas bayesiano y frecuentista de inferencia}
+   
+%	----------------------------
+%		Modelos de Pérdida
+%	----------------------------
+\part{Modelos de Pérdida}
+
+%	----------------------------
+%		Ch2. Introducción a los Modelos Actuariales de Pérdida
+%	----------------------------
+\chapter{Introducción a los Modelos Actuariales de Pérdida}
+	
+	\section{Frecuencia de siniestros}
+	\section{Severidad individual}
+	\section{Agregación de reclamos}
+	
+%	----------------------------
+%		Ch3. Distribución de la Frecuencia de Siniestros
+%	----------------------------
+\chapter{Distribución de la Frecuencia de Siniestros}
+	
+	En estad\'istica actuarial se modela la p\'erdida inducida por reclamaciones de 
+   p\'olizas de seguros. Para este fecto, tanto el n\'umero de siniestros como la 
+   severidad (monto) de los mismos son relevantes. El n\'umero de siniestros 
+   (frecuencia) mide el n\'umero de reclamaciones para un bloque de p\'olizas de 
+   seguros en un periodo de tiempo finito (mensual o anual). 
+	
+	Se supone que la frecuencia de siniestros, $N$, es una variable aleatoria 
+   discreta con soporte en los enteros positivos, $\mathcal{N}=\{0,1,2,\ldots\}$. 
+   En esta sesi\'on revisaremos algunas distriuciones param\'etricas que son 
+   com\'unmente empleadas para modelar la frecuencia de siniestros. 
+	
+	\begin{remark}
+   Note que aunque el bloque de p\'olizas de seguros est\'a formado por un 
+   n\'umero finito, la modelaci\'on de frecuencias supone, en ocasiones, un soporte 
+   numerable. Esto no es un problema en la pr\'actica, pues muchas de estas 
+   distribuciones en verdad son una aproximaci\'on razonable para una 
+   distribuci\'on de frecuencia de siniestros con un n\'umero finito de p\'olizas.
+	\end{remark}
+   
+	Ls distribuciones que revisamos en esta sesi\'on son:i) Binomial ($\BinD$), 
+   ii) Binomial negativa ($\BinND$), iii) Poisson ($\PoD$) y iv) Geom\'etrica ($\GeoD$).
+
+	%
+	%		Distribuciones discretas
+	%
+	\section{Distribuciones discretas}
+
+			\subsection{Distribuci\'on binomial}
+			
+			La variable aleatoria $N$ es modelada con la distribuci\'on binomial, $\BinD(n; \eta,\theta)$, donde $\eta$ el n\'umero de p\'olizas en el bloque de seguros, y $0<\theta<1$ es la probabilidad de ocurrencia de siniestro de cada p\'oliza individual, si
+			\begin{equation}
+			 	p_N(n)=\Pr(N=n)\propto \theta^{\eta}(1-\theta)^{\eta-n},
+			\end{equation}
+			para $n\in\mathcal{N}=\{0,1,2,\ldots,\eta\}$. Aqu\'i se supone que $\eta$ es finito y conocido.
+			
+			{\it Note que los supuestos fundamentales para el uso de la distribuci\'on binomial para la modelaci\'on de frecuencias de siniestros son: i) la ocurrencia de siniestros entre p\'olizas es la misma (i.e. los siniestros comparten condiciones homog\'eneas de exposici\'on al riesgo de siniestro), y ii) la ocurrencia de siniestros es independiente entre p\'olizas.}
+			
+			Esta distribuci\'on tiene las siguientes propiedades:
+			\begin{eqnarray}
+				\Expec(N)	&	=	&	\eta\theta. \nonumber \\
+				\var(N)		&	=	&	\eta\theta(1-\theta). \nonumber \\
+				M_N(t)		&	=	&	\left(\theta e^{t}+(1-\theta)\right)^{\eta}. \nonumber
+			\end{eqnarray}
+			
+			La distribuci\'on binomial es sim\'etrica si $\theta = 1/2$. En el caso $\theta < 1/2$, la distribuci\'on es sesgada a la derecha (positivamente sesgada); mientras que en el caso $\theta > 1/2$, la distribuci\'on es sesgada a la izquierda (negativamente sesgada). 
+			
+			El estimador m\'aximo verosimil para $\theta$, bajo el supuesto de independencia estoc\'astica entre los siniestros de las p\'olizas, es $\hat{\theta}=1/n\sum_{i=1}^{n}\indicator(\text{siniestro}_i)$. La distribuci\'on inicial conjugada para $\theta$, bajo el enfoque bayesiano de inferencia, es una distribuci\'on beta, $\BeD(\theta|\alpha_0,\beta_0)$, con $\alpha_0,\beta_0>0$. Los valores de los hiperpar\'ametros $\alpha_0$ y $\beta_0$ son previamente especificados por el modelador, empleando informaci\'on adicional relevante (e.g. datos de frecuencia de siniestros de un bloque de p\'olizas para un periodo de tiempo distinto y coberturas semejantes). La distribuci\'on final para $\theta$ ser\'a  as\'i beta, pero con par\'ametros $\alpha_1=\alpha_0+\sum_{i=1}^{n}\indicator(\text{siniestro}_i)$ y $\beta_1=\beta_0+\sum_{i=1}^{n}\indicator(\text{no siniestro}_i)$.
+			
+			\subsection{Distribuci\'on binomial negativa}
+			
+			La distribuci\'on binomial negativa, $\BinND(n;r,\theta)$ modela el 
+         n\'umero de p\'olizas siniestradas, $n$, antes de observar 
+         $r$ p\'olizas no siniestradas, donde la probabilidad de siniestro es 
+         $0<\theta<1$. La distribuci\'on est\'a dada por: 
+			\begin{equation}
+			 	p_N(n)=\Pr(N=n)\propto \theta^{n}(1-\theta)^{r},
+			\end{equation}
+			para $n\in\mathcal{N}$. 
+			
+			\begin{remark}
+         Al igual que en el modelo binomial, se supone que las p\'olizas comparten 
+         condiciones homog\'eneas de exposici\'on al riesgo de ser siniestradas.
+         \end{remark}
+			
+			Esta distribuci\'on tiene las siguientes propiedades:
+			\begin{eqnarray}
+				\Expec(N)	&	=	&	r\frac{(1-\theta)}{\theta}. \nonumber \\
+				\var(N)		&	=	&	r\frac{(1-\theta)}{\theta^{2}}. \nonumber \\
+				M_N(t)		&	=	&	\left(\frac{\theta}{1-(1-\theta)e^{t}}\right)^{r}. \nonumber
+			\end{eqnarray}
+			
+			Usualmente, el par\'ametro $r$ se supone fijo y conocido. En la pr\'actica, 
+         $r$ es desconocido, por tanto es estimable. As\'i, el estimador m\'aximo 
+         veros\'imil para $\theta$ ser\'ia, 
+         $\hat{\theta}=\frac{\sum_{i}\indicator(\text{siniestro}_i)}{N_r+\sum_{i}\indicator(\text{siniestro}_i)}$, donde $N_r$ es el estimador de $r$ el cu\'al se obtiene empleando m\'etodos num\'ericos usando el algoritmo de Brent\footnote{Brent, R.P. (2002) {\it Algorithms for minimization without derivatives.} Dover Publications.} Bajo el enfoque bayesiano de inferencia, la distribuci\'on inicial conjugada para $\theta$ es $\BeD(\theta|\alpha_0,\beta_0)$. Condicional en $r$, la distribuci\'on final para $\theta$ es $\BeD(x|\alpha_1,\beta_1)$, con $\alpha_1=\alpha_0+\sum_{i}\indicator(\text{siniestro}_i)$ y $\beta_1=\beta_0+r$. Cuando se extiende la incertidumbre a $r$ también, se requiere definir una prior para $r$, la cual puede ser $\PoD(r|\lambda_0)$. La distribuci\'on final conjunta para $(r,\theta)$, en este caso, se calcula empleando m\'etodos num\'ericos tambi\'en (e.g. el muestreador de Gibbs\footnote{Robert, C. y Casella, G. (1997) {\it Introduction to MCMC Methods}. Springer.}).  
+			
+			\subsection{Distribuci\'on geom\'etrica}
+			
+			La distribuci\'on geom\'etrica, $\GeoD(n;\theta)$ modela el n\'umero de 
+         p\'olizas siniestradas, $n$, antes de observar $1$ p\'oliza no siniestrada, 
+         donde la probabilidad de siniestro es $0<\theta<1$. La distribuci\'on est\'a dada por: 
+			\begin{equation}
+			 	p_N(n)=\Pr(N=n)\propto \theta^{n}(1-\theta),
+			\end{equation}
+			para $n\in\mathcal{N}$. Esta distribuci\'on es un caso particular de la 
+         distribuci\'on binomial negativa, con $r=1$. El an\'alisis y estimación 
+         frecuentista y bayesiano de esta distribuci\'on es notoriamente m\'as 
+         simple que en el caso de la distribuci\'on binomial negativa. 
+         Sin embargo, su implementaci\'on y uso en la pr\'actica es menos 
+         robusto que el de la distribuci\'on binominal negativa.
+			
+			\begin{remark}
+         Los supuestos que operan en este caso son similares a los de la 
+         distribuci\'on binomial negativa.
+         \end{remark}
+			
+			\subsection{Distribuci\'on Poisson}
+			
+			La  distribuci\'on Poisson para la frecuencia de siniestros, $\PoD(n;\lambda)$, 
+         siendo $\lambda>0$ la tasa de siniestros, es quiz\'as la distribuci\'on 
+         m\'as empleada en la pr\'actica. La distribuci\'on de probabilidad 
+         est\'a dada por:
+			\begin{equation}
+			 	p_N(n)=\Pr(N=n)\propto \frac{\lambda^{n}}{n!},
+			\end{equation}
+			para $n\in\mathcal{N}$.
+			
+			Esta distribuci\'on tiene las siguientes propiedades:
+			\begin{eqnarray}
+				\Expec(N)	&	=	&	\lambda. \nonumber \\
+				\var(N)		&	=	&	\lambda. \nonumber \\
+				M_N(t)		&	=	&	\exp\left\{ \lambda(e^{t}-1)\right\}. \nonumber
+			\end{eqnarray}
+			
+			El estimador de m\'axima verosimilitud de $\lambda$ es 
+         $\hat{\lambda}=1/n\sum_{i}\indicator(\text{siniestro}_i)$. 
+         Bajo el enfoque bayesiano de inferencia, la distribuci\'on inicial 
+         conjugada para $\lambda$ es $\GaD(\lambda|\alpha_0,\beta_0)$. 
+         As\'i, la distrbuci\'on final para $\lambda$ es 
+         $\GaD(\lambda|\alpha_1,\beta_1)$, donde 
+         $\alpha_1=\alpha_0+\sum_{i}\indicator(\text{siniestro}_i)$ y 
+         $\beta_1=\beta_0+n$.
+
+	%
+	%		Distribuciones $(a,b,0)$
+	%
+	\section{Distribuciones $\ABzeroD$}
+
+	En esta sesi\'on, revisaremos la definici\'on y propiedades de una familia de distribuciones discretas que engloba las duatro distribuciones param\'etricas que revisamos la sesi\'on anterior. Esta familia de distribuciones se denota como $\ABzeroD$
+	
+		\begin{definition}
+      Una variable aleatoria discreta no negativa, $N$, sigue una distribuci\'on 
+      $\ABzeroD$ si la funci\'on de masa de probabilidades puede escribirse como:
+		\begin{equation}
+			p_N(n)= \left(\alpha + \frac{\beta}{n}\right)p_{N}(n-1),
+		\end{equation}
+		para $n$ en $\mathcal{N}=\{1,2,\ldots\}$.
+		\end{definition}
+		
+		Los par\'ametros, $\alpha$ y $\beta$ son constantes y $p_{N}(0)$ es fijo y dado.
+	
+      El uso de las distribuciones $\ABzeroD$ en estad\'istica actuarial proviene 
+      de la naturaleza recursiva de a distribuci\'on de masa de probabilidades. 
+      Esta propiedad recursiva es \'util cuando se emplean ciertas 
+      f\'ormulas de recursi\'on para calcular la distribuci\'on del monto agregado 
+      de siniestros, como veremos m\'as adelante. 
+	
+      \begin{example}
+      La distribuci\'on binomial, $\BinD(n,\theta)$, es un caso particular de la 
+      distribuci\'on $\ABzeroD$, y su funci\'on de distribuci\'on est\'a 
+      caracterizada en la forma $\ABzeroD$ por los siguientes par\'ametros,
+      \begin{eqnarray}
+         \alpha 	& = & -\frac{\theta}{1-\theta}. \nonumber \\
+         \beta 	& = & -\frac{\theta (\eta+1)}{(1-\theta)}. \nonumber
+      \end{eqnarray}
+      \end{example}
+	
+		\begin{definition} 
+      Una variable aleatoria discreta no negativa, $N$, sigue una distribuci\'on 
+      $\ABoneD$ si la funci\'on de masa de probabilidades puede escribirse como:
+		\begin{equation}
+			p_N(n)= \left(\alpha + \frac{\beta}{n}\right)p_{N}(n-1),
+		\end{equation}
+		para $n$ en $\mathcal{N}=\{2,3,\ldots\}$. Aqu\'i, $p_{N}(0)$ debe estar dado.
+		\end{definition} 
+	
+      A partir de una distribuci\'on $\ABzeroD$, es posible definir una 
+      distribuci\'on con soporte en $\mathcal{N}=\{1,2,\ldtos\}$ mediante un 
+      ejercicio de truncamiento. La distribuci\'on resultante se conoce como una 
+      distribuci\'on modificada en $0$. 
+	
+		\begin{definition}
+      Una variable aleatoria discreta discreta no negativa, $N$, con soporte en 
+      $\mathcal{N}=\{0,1,\ldots\}$ y distribuci\'on $\ABzeroD$ tiene sigue una 
+      modificaci\'on en $0$ si, 
+      \begin{equation}
+			p^{M}_N(n)= \gamma p_{N}(n),
+		\end{equation}
+		para $n$ en $\mathcal{N}^{M}=\{1,2,3,\ldots\}$. Aqu\'i, el par\'ametro 
+      $\gamma$ es la constante de modificaci\'on. Este par\'ametro se define de 
+      tal forma que se garantice que $p^{M}_{N}$ sea una medida de probabilidad 
+      propia en el soporte modificado $\mathcal{N}^{M}$.\footnote{El sub\'indice 
+      $M$ denota la modificaci\'on de la variable aleatoria, funci\'on de 
+      distribuci\'on o el soporte.}
+		\end{definition}
+		
+		As\'i, la constante de modificaci\'on est\'a dada por
+		\begin{equation}
+			\gamma = \frac{1-p^{M}_{N}(0)}{1-p_{N}(0)}.
+		\end{equation}
+
+	%
+	%		Transformaciones y creación de nuevas distribuciones
+	%
+	\section{Transformaciones y creación de nuevas distribuciones}
+
+	%
+	%		Sobredispersión
+	%
+	\section{Sobredispersión}
+
+	%
+	%		Inferencia y predicción de la frecuencia de siniestros
+	%
+	\section{Inferencia y predicción de la frecuencia de siniestros}
+
+%	----------------------------
+%		Ch4. Distribución de la Severidad Individual
+%	----------------------------
+\chapter{Distribución de la Severidad Individual}
+
+			En estad\'istica actuarial, las variables aleatorias que se modelan en la pr\'actica
+		incluyen simult\'aneamente una parte continua y otra discreta. 
+		
+		A continuaci\'on, revisaremos los fundamentos para este tipo de variables y las 
+		funciones de probabilidad asociadas.
+		
+		Sea $Z$ la variable aleatoria que representa el monto reclamado de un contrato de seguro (en general).
+		Los casos contemplados para $Z$ son:
+		\begin{enumerate}
+			\item Que el contrato sea abierto.
+			\item El reclamo se define en exceso de un monto m\'aximo asegurado, $M$.
+			\item El reclamo se define abiertamente hasta un monto m\'aximo asegurado, $M$.
+		\end{enumerate}
+		
+		\textcolor{blue}{C\'omo construir la variable aleatoria que definir\'ia estos contratos?}
+		
+		Empecemos con la definci\'on de la funci\'on indicadora, $\mathbb{I}(\cdot)$, que se define como
+		\begin{equation}
+		   \mathbb{I}(\mbox{evento} ) 
+            = 
+            \begin{cases} 
+               1 & \mbox{ si el evento 'ocurre' } \\
+		         0 & \mbox{e.o.c.}
+		      \end{cases} 
+		    \nonumber
+		\end{equation}
+		
+		As\'i, se puede definir una variable aleatoria del monto individual de reclamo
+      en funci\'on de $\mathbb{I}$, como
+		\begin{equation}
+		   Z =
+		      \mathbb{I}(\mbox{evento} ) X
+		      + 
+		      (1-\mathbb{I}(\mbox{evento} )) Y,
+		\end{equation}
+		donde $X$ y $Y$ son dos variables aleatorias estoc\'asticamente independientes.
+		
+		As\'i, $Z$ se define en funci\'on de la triada ($\mathbb{I}$,$X$,$Y$). 
+      De esta forma, la funci\'on de distribuci\'on de probabilidades para $Z$ 
+      se define como
+		\begin{equation}
+		   F_{Z}(z) = q F_{X}(z) + (1-q) F_{Y}(z),
+		\end{equation}
+		donde $q = \Pr(\mathbb{I}(\mbox{evento}))$, y
+		\begin{eqnarray}
+		   F_{X}(z) 
+            & = &  
+            \Pr(X\leq z|\mbox{evento}) 
+		      \nonumber \\
+		   F_{Y}(z) 
+            & = & 
+            \Pr(Y\leq z|\mbox{evento}).
+		      \nonumber
+		 \end{eqnarray}
+		
+		\begin{example}
+		Supongamos que $X$ es una variable aleatoria discreta, con soporte en 
+		$\mathcal{X}=\{x_1, x_2, \ldots\}$, y $Y$ es una variable aleatoria absolutamente
+		continua con soporte en $\mathcal{Y}=\Re_+$. $\mathbb{I}$ se define como una 
+		variable aleatoria Bernoulli con par\'ametro $q$.
+		
+		Definimos as\'i a $Z$ como:
+		\begin{equation}
+		   Z = \mathbb{I} X + (1-\mathbb{I}) Y,
+		\end{equation}
+		siguiendo que la funci\'on de distribuci\'on de probabilidades para $Z$ se calcula como:
+		\begin{equation}
+		   F_{Z}(z) = q F_X(z) + (1-q) F_Y(z),
+		\end{equation}
+		con $F_X$ y $F_Y$ definidas como antes.
+		
+		Siendo $Z$ y $F_{Z}$ definidas como una combinaci\'on linear convexa, es realmente simple 
+		calcular valores esperados de $Z$, como
+		\begin{equation}
+		   \Expec(Z) = q\Expec(X) + (1-q)\Expec(Y).
+		\end{equation}
+		
+		En general, si $\phi$ es una funci\'on de inter\'es integrable,
+		\begin{equation}
+		   \Expec(\phi(Z)) = q\Expec(\phi(X)) + (1-q)\Expec(\phi(Y)).
+		\end{equation}
+		\end{example}
+	
+	%
+	%		Funciones de supervivencia y de riesgo
+	%
+	\section{Funciones de supervivencia y de riesgo}
+
+	%
+	%		Distribuciones mixtas y mezcla de distribuciones
+	%
+	\section{Distribuciones mixtas y mezcla de distribuciones}
+
+	%
+	%		Distribuciones continuas sobre la recta real positiva
+	%
+	\section{Distribuciones continuas sobre la recta real positiva}
+
+	Las distribuciones param\'etricas que usualmente se emplean para modelar la 
+   distribuci\'on individual de las reclamaciones de siniestros son: 
+   i) Exponencial, ii) Gamma, iii) Weibull y iv) Pareto.
+	De estas cuatro distribuciones, la exponencial es la m\'as sencilla de 
+   trabajar desde el punto de vista inferencial. La raz\'on para estudiar las 
+   otras alternativas es la de proveer herramientas de modelaci\'on que permitan 
+   capturar distintas caracter\'isticas de los reclamos de siniestros 
+   simult\'aneamente, como: a) Tendencia central, b) Dispersi\'on, y 
+   c) Valores extremos.
+	
+	\subsection{Distribuci\'on Exponencial}
+	
+	La funci\'on de densidad de esta distribuci\'on est\'a dada por
+	\begin{equation}
+		f_{X}(x|\theta)
+			= \theta \exp\{-\theta x\}.
+	\end{equation}
+	Su funci\'on de distirbuci\'on est\'a dada por
+	\begin{equation}
+		F_{X}(x|\theta)
+			= 1- \exp\{-\theta x\}.
+	\end{equation}
+	La distribuci\'on exponencial tiene la caracter\'istica de tener tazas de riesgo constantes, i.e.
+	\begin{equation}
+		h_{X}(x|\theta)
+			= \theta.
+	\end{equation}
+	
+	\subsection{Distribuci\'on Gamma}
+	
+	La funci\'on de densidad de esta distribuci\'on est\'a dada por
+	\begin{equation}
+		f_{X}(x|\alpha,\beta)
+			= \frac{\beta^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1} \exp\{-\beta x\}.
+	\end{equation}
+	A diferencia de la distribuci\'on exponencial, la distribuci\'on gamma no tiene una expresi\'on anal\'itica cerrada para su funci\'on de distribuc\'on.
+	
+	\subsection{Distribuci\'on Weibull}
+	
+	La funci\'on de densidad de esta distribuci\'on est\'a dada por
+	\begin{equation}
+		f_{X}(x|\alpha,\beta)
+			= \frac{\alpha}{\beta} \left(\frac{x}{\beta}\right)|^{\alpha-1}  \exp\{-(x/\theta)^\alpha\}.
+	\end{equation}
+	
+	Su funci\'on de distirbuci\'on est\'a dada por
+	\begin{equation}
+		F_{X}(x|\alpha,\beta)
+			= 1- \exp\{-(x/\beta)^\alpha\}.
+	\end{equation}
+	
+	\subsection{Distribuci\'on Pareto}
+	
+	La funci\'on de densidad de esta distribuci\'on est\'a dada por
+	\begin{equation}
+		f_{X}(x|\alpha,\beta)
+			= \frac{\alpha\beta^{\alpha}}{(x+\beta)^{\alpha+1}}.
+	\end{equation}
+	
+	Su funci\'on de distirbuci\'on est\'a dada por
+	\begin{equation}
+		F_{X}(x|\alpha,\beta)
+			= 1- \left(\frac{\beta}{x+\beta}\right)^\alpha.
+	\end{equation}
+	
+	Su funci\'on de riesgo est\'a dada por
+	\begin{equation}
+		h_{X}(x|\alpha,\beta)
+			= \frac{\alpha}{x+\beta}.
+	\end{equation}
+
+	%
+	%		Valores extremos y colas de la distribución
+	%
+	\section{Valores extremos y colas de la distribución}
+
+	%
+	%		Funciones de supervivencia y de riesgo
+	%
+	\section{Tipos de coberturas y distribuciones inducidas}
+
+	%
+	%		Inferencia y predicción de la severidad
+	%
+	\section{Inferencia y predicción de la severidad}
+
+%	----------------------------
+%		Ch5. Modelos de Pérdida Agregada
+%	----------------------------
+\chapter{Modelos de Pérdida Agregada}
+	
+	\section{Nociones generales}
+
+	Las distribuciones compuestas se emplean para modelar el monto agregado de reclamos de un portafolio de seguros. Sea $N$ el n\'umero de p\'olizas (o reclamaciones) que integran el portafolio, y $X_{i}$ el monto del siniestro. 
+	
+	Recuerde que cuando trabajamos con portafolios de seguros, \'estos se segmentan en grupos, de manera que al interior de cada grupo la exposici\'on al riesgo de ocurrir un siniestro es homog\'eneo. De igual forma, las condiciones de cobertura de las p\'olizas en cada grupo son homog\'eneas. As\'i, podemos referirnos al monto del siniestro, $X_{i}$, o al monto del reclamo a la aseguradora, $Y_{i}$ casi indistintamente.
+	
+	As\'i, la variable de inter\'es se describe como:
+	\begin{equation}
+		S = \sum_{i=1}^{N} X_i.
+	\end{equation}
+	La distribuci\'on que nos interesa describir es la de $S$. Ahora bien, tal distrbuci\'on estar\'a en funci\'on de la forma de modelaci\'on de $N$, distinguiendo entre dos tipos de modelos agregados de siniestros: i) modelos de riesgo individuales, y ii) modelos de riesgo colectivo. 
+	
+	
+	%
+	%		Modelos de riesgo individual
+	%
+	\section{Modelos de riesgo individual}
+
+   \subsection{Convoluciones}
+   En el modelo de riesgo individual, se supone que $N$ corresponde al n\'umero 
+   de p\'olizas en el portafolio de seguros. As\'i, la distribuci\'on de $S$ 
+   estar\'a definida solamente por la distribuci\'on conjunta de los siniestros 
+   individuales,
+   \begin{equation}
+      \Pr(X_{1},...,X_{N}).
+   \end{equation}
+   El supuesto com\'un respecto a los siniestros individuales los considera 
+   estoc\'asticamente independientes e id\'enticamente distribuidos (i.i.d.),
+   \begin{equation}
+      \Pr(X_{1},...,X_{N})=\prod_{i=1}^{N}\Pr(X_i).
+   \end{equation}
+   As\'i, la distribuci\'on de $S$ quesdar\'ia expresada como la convoluci\'on 
+   de $N$ variables aleatorias. Tal distribuci\'on puede calcularse empleando 
+   directamente la f\'ormula de convoluci\'on o simplificando su c\'alculo 
+   empleando la funci\'on generadora de momentos o funci\'on caracter\'istica 
+   de $X$.
+ 
+   Respecto a $\Pr(X)$, debe notarse que tal distribuci\'on estar'a en funci\'on del concepto de $N$:
+   \begin{itemize}
+      \item Si $N$ representa el {\bf n\'umero de p\'olizas}, entonces $X_i$ 
+      debe considerar la posibilidad de no siniestro , i.e. $X_i=0$ 
+      (debido a la ausencia de siniestro). De esta forma,
+      \begin{equation}
+         \Pr(X_i\leq x) = q \indicator(X_i=0) + (1-q) F_{X_i}(x),
+      \end{equation}
+      para $x \in \mathcal{X}=\Re_{+}$. En esta expresi\'on, $q$ representa la 
+      probabilidad de que NO haya siniestro, y $(1-q)$ su complemento. 
+      Tambi\'en, $F_{X_i}(x)$ representa la distribuci\'on de una variable 
+      aleatoria positiva, la cual representa el monto del siniestro.
+      
+      Siendo esta distribuci\'on mezclada, el c\'alculo de $S$ mediante la 
+      f\'ormula de convoluci\'on o m\'etodo de momentos es complicado. El 
+      empleo de simulaci\'on estoc\'astica puede ser la mejor opci\'on en 
+      la pr\'actica.
+      
+      \item Si $N$ representa la {\bf frecuencia de siniestros}, entonces $X_i$ 
+      representar\'ia el monto del siniestro, con
+      \begin{equation}
+         \Pr(X_i\leq x) = F_{X_i}(x),
+      \end{equation}
+      la distribuci\'on para el monto del siniestro. En este caso, la f\'ormula 
+      de convoluci\'on o el m\'etodo de momentos puede ser la mejor alternativa 
+      de uso en la pr\'actica, si $F_{X_i}$ pertenece a una clase conocida de 
+      distribuciones.
+   \end{itemize}
+
+	\subsection{Fórmulas de recursión}
+	
+   \subsection{Aproximaciones analíticas}
+   Si $X_1, \ldots, X_n$ son v.a.'s i.i.d. tales que $\Expec(X)=\mu$ y 
+   $\var(X)=\sigma^{2} (< \infty)$, entonces
+   \begin{equation}
+      \lim_{n \rightarrow \infty} \Pr
+      \left( \sum_{i=1}^{n} X_i \leq n\mu + x\sigma\sqrt{n} \right)\right) 
+      = 
+      \Phi(x),
+   \end{equation}
+   donde $x$ es cualquier valor en \mathcal{X}$ y $\Phi$ es la funci\'on de 
+   distribuci\'on normal est\'andar.
+   
+   La anterior expresi\'on corresponde al Teorema de L\'imite Central. 
+   De este resultado, para efecto de nuestro inter'es, podemos aproximar el 
+   agregado de siniestros de un portafolio de seguros, $S=\sum_{i=1}^{n}$, como
+   \begin{equation}
+      \Pr(S\leq s) \approx \NormD(s|n\mu, n\sigma^{2}).  
+   \end{equation}
+   
+   \begin{remark}
+   Note que la aproximaci\'on anterior hace uso solo del primero y segundo 
+   momento de la distribuci\'on del monto individual de reclamo.
+   \end{remark}
+   
+   Con el prop\'osito de robustecer esta aproximaci\'on, podemos emplear una 
+   generalizaci\'on dle Teorema de L\'imite Central que considera los primeros 
+   tres momentos de la distribuci\'on de las $X_i$'s. Supongamos que $\gamma$ 
+   corresponde al tercer momento estandarizado de $X_i$, i.e. 
+   $\ganma=\Expec\left[ \left((X-\mu)/\sigma\right)^{3} \right]$. 
+   La aproximaci\'on para $\Pr(S)$ estar\'ia dada entonces por
+   \begin{equation}
+      \Pr((S-\mu)/\sigma \leq s) \approx \Phi\left( \sqrt{9/\gamma^{2} + 6s/\gamma + 1-3/\gamma} \right),  
+   \end{equation}
+   donde $\Phi$ es la funci\'on de distribuci\'on Normal est\'andar.
+   
+	\subsection{Aproximaciones vía simulación}
+
+	%
+	%		Modelos de riesgo colectivo
+	%
+	\section{Modelos de riesgo colectivo}
+	
+   \subsection{Distribuciones compuestas}
+   En el modelo de riesgo colectivo, se supone que $N$ corresponde al n\'umero 
+   (frecuencia) de siniestros en el portafolio de seguros, suponiendo que tal 
+   frecuencia {\it desconocida} y {\it aleatoria}. En este caso, la 
+   distribuci\'on de $S$ estar\'a definida por la distribuci\'on conjunta de la 
+   frecuencia de los siniestros y del monto (o severidad) los mismos a nivel 
+   individual,
+   \begin{equation}
+      \Pr(N,X_{1},...,X_{N}).
+   \end{equation}
+   En este caso, las variables $X_i$ representan el monto del siniestro, 
+   condicional en que el siniestro individual haya ocurrido. 
+
+   Usualmente, se supone que la frecuencia de los siniestros es estoc\'asticamente 
+   independiente de los montos de los siniestros individuales, i.e.
+   \begin{equation}
+      \Pr(N,X_{1},...,X_{N})=\Pr(N)\Pr(X_{1},...,X_{N}|N).
+   \end{equation}
+   Adicionalmente, se supone que los montos de los siniestros individuales son 
+   condicionalmente independientes, dado $N$, i.e.
+   \begin{equation}
+      \Pr(X_{1},...,X_{N}|N)=\prod_{i=1}^{N}\Pr(X_{i}).
+   \end{equation}
+
+   Suponiendo que $N$ es una variable aleatoria, la distribuci\'on agregada de 
+   los siniestros en el portafolio, $S$, se conoce como una distribuci\'on compuesta. 
+   En el argot de estad\'istica actuarial, la distribuci\'on de $N$, 
+   $\Pr(N)$, se conoce como {\bf distriuci\'on primaria}, mientras que la 
+   distribuci\'on del monto individual del siniestro, $\Pr(X_i)$, se conoce 
+   como {\bf distribuci\'on secundaria} de la distribuci\'on de $S$.
+
+   El c\'alculo de la distribuci\'on de $S$ en este caso puede realizarse 
+   empleando la funci\'on generadora de momentos. Supongamos:
+   \begin{itemize}
+      \item $\Pr(N)$ es una distribuci\'on con soporte en 
+      $\mathcal{N}=\{1,2,3,\ldots\}$ (enteros positivos), con funci\'on 
+      generadora de momentos $M_{N}(t)$, y
+      \item $\Pr(X_{i}\leq x)=F_{X_i}(x)$ es una funci\'on de distribuci\'on 
+      (continua o absolutamente continua), con soporte en $\mathcal{X}=(0,\infty)$, 
+      y funci\'on generadora de momentos $M_X(t)$,
+   \end{itemize}
+   entonces, la funci\'on generadora de momentos del monto agregado de siniestros 
+   ser\'ia,
+   \begin{equation}
+      M_{S}(t) = M_N \left(\log M_{X}(t)\right).
+   \end{equation}
+   De esta expresi\'on se toma el t\'ermino de que $\Pr(S\leq x)$ sea una 
+   distribuci\'on compuesta. Este c\'alculo descansa en el supuesto de que los 
+   montos individuales de siniestros, $X_i$'s, sean condicionalmente i.i.d. 
+   dado $N$. Note tambi\'en que el supuesto de que las $X_i$'s sean intermabiables 
+   dado $N$ tambi\'en aplica, para poder hacer uso del enfoque bayesiano de inferencia.
+
+   \begin{example}
+   {\bf Distribuci\'on compuesta Poisson-gamma}. 
+   Suponga que $N$ es una variable aleatoria con distribuci\'on $\PoD(N|\lambda)$ 
+   y que las $X_i$'s son variables aleatorias con distribuci\'on $\GaD(x|\alpha,\beta)$. 
+   Entonces, la distribuci\'on de $S$ se define como la distribuci\'on Poisson 
+   compuesta con respecto a la distribuci\'on gamma. La funci\'on generadora de 
+   probabilidades de $S$ estar\'ia expresada como
+   \begin{equation}
+      P_{S}(t)=P_{N}\left( P_{X}(t) \right)=\exp\left\{ \lambda(P_X(t)-1) \right\}\right\},
+   \end{equation}
+   con $P_X(t)$ la distribuci\'on generadora de probabilidades del monto individual 
+   de siniestros.
+
+   Note que el c\'alculo de la expresi\'on ana\l'itica para $F_S$ es complicado.
+   Su c\'alculo en la pr\'actica descansa en m\'etodos recursivos de c\'alculo, 
+   como el m\'etodo de P\'anjer (1981). Trabajando con recursiones, ser\'a m\'as 
+   conveniente definir una expresi\'on general en t\'erminos de la 
+   distribuci\'on $(\alpha,\beta,0)$. 
+   \end{example}
+
+   \begin{example}
+   {\bf Modelo Exponencial-Geom\'etrico}
+   Supongamos que $N\sim \GeoD(n|\theta)$ y $X\sim \ExpD(x|\lambda)$. La 
+   distribuci\'on de probabilidad para $S$ es del tipo mixto, con
+   \begin{equation}
+      F_S(s) =
+         \begin{cases}
+            \theta & \text{ para } $S=0$ \\
+            (1-\theta)\exp\{\lambda\theta\} & \text{ para } S > 0.
+         \end{cases}
+   \end{equation}
+   La funci\'on generadora de momentos de $X$ es
+   \begin{equation}
+      M_X(t) = \frac{\lambda}{\lambda-t},
+   \end{equation}
+   mientras que la funci\'on generadora de momentos de $N$ es,
+   \begin{equation}
+      M_N(t) = \frac{\theta}{1-(1-\theta)e^{t}}.
+   \end{equation}
+   
+   As\'i, aplicando la f\'ormula compuesta para la funci\'on generadora de momentos
+   para $S$ tenemos,
+   \begin{eqnarray}
+      M_S(t)
+         & = &
+         \frac{\theta}{(1-(1-\theta)\frca{\lambda}{\lambda-t})}
+         \nonumber \\
+         & = &
+         \theta + (1-\theta) \frac{\lambda\theta}{\lambda\theta - t}.
+         \nonumber
+   \end{eqnarray}
+   El primer componente de $M_S(t)$ anterior hace referencia al punto de masa de $S$
+   en $0$, con probabilidad $\theta$, mientras que el segundo componente, con probabilidad 
+   $(1-\theta)$, hace referencia a la distribuci\'on del agregado de siniestros 
+   (cuando estos pasan), con distribuci\'on $\ExpD(\lambda\theta)$.
+   \end{example}
+
+   \begin{example}
+   {\bf Distribuci\'on compuesta $(\alpha,\beta,0)-F_X$}. 
+   Supongamos que $N$ sigue una distribuci\'on $(\alpha,\beta,0)$, siendo las 
+   $X_i$'s variables aleatorias con ditribuci\'on $F_X$ soportadas en los 
+   enteros no negativos, $\mathcal{X}=\{1,2,3,\ldots\}$ (este supuesto es 
+   fundamental). Entonces la distribucu\'on de $S$ puede expresarse como
+   \begin{equation}
+      f_S(s)=\frac{1}{1-\alpha f_{S}(0)} \sum_{x=1}^{s}\left( \alpha + 
+      \frac{\beta x}{s}\right) f_{X}(x)f_{S}(s-x),
+   \end{equation}
+   para $s \in \mathcal{S}=\{1,2,\ldots\}$, con valor inicial de la recursi\'on 
+   dado por 
+   \begin{equation}
+      f_{S}(0)=P_{S}(0)=P_{N}\left( P_X(0) \right),
+   \end{equation}
+   donde $P_N$ y $P_X$ son las funciones generadoras de probabilidad de $N$ y 
+   $X$ respectivamente.
+
+   Note que la f\'ormula de recursi\'on anterior requiere suponer que el monto
+   individual de siniestros tiene soporte discreto no negativo. Cuando el monto 
+   de los siniestros individuales se supone continuo, tal recursi\'on no es 
+   v\'alida, pero puede realizarse una sustituci\'on ad-hoc de la suma en $X$ 
+   como una integral para definir la convoluci\'on de $X$ parcial con $S$ parcial.
+   \end{example}
+
+   
+		\subsection{Fórmulas de recursión}
+		\subsection{Aproximaciones analíticas}
+		\subsection{Aproximaciones vía simulación}
+
+	\section{Efectos de la modificación de coberturas}
+	\section{Nociones de reaseguro {\it stop-loss}}
+
+%	----------------------------
+%		Teoría de Ruina
+%	----------------------------
+\part{Teoría de Ruina}
+
+%	----------------------------
+%		Ch6. Medidas de Riesgo
+%	----------------------------
+\chapter{Medidas de Riesgo}
+	
+	\section{Medidas de riesgo}
+	El riesgo para las compañías de seguros, como en otros ramos, puede clasificarse en tres categorías: i) {\it riesgo de mercado}, que es la exposición al riesgo por el cambio de los precios del mercado y condiciones de negociación en el mercado, ii) {\it riesgo de crédito}, derivado de la posibilidad de que los clientes entren en quebranto, y iii) {\it riesgo de operaciones}, derivado de cualquier riesgo que no es de mercado ni de crédito. 
+	
+	En estas notas nos concentraremos en el riesgo operacional que enfentan las compañías de seguros. El riesgo más importante al que se enfrenta una aseguradora, es el derivado de las pérdidas que se generan de los reclamos del portafolio de pólizas aseguradas. Las compañías de seguros emplean las medidas de riesgo que revisaremos para:
+	\begin{itemize}
+		\item Determinación del capital.
+		\item Detrminación de la prima de seguro (prima de riesgo o tarificación).
+		\item Administración interna del riesgo.
+		\item Reporte a instituciones regulatorias.
+	\end{itemize}
+	
+	Definamos $Y$ una variable de pérdida para una compañia de seguros. Esta se define como una variable aleatoria, pues no ha sido observada aun. Puede coincidir con la variable de severidad agregada de un portafolio de seguros (colectivo o individual), $S$, para un periodo dado.
+	
+	\begin{definition}
+	Una medida de riesgo para la variable aleatoria $Y$, denotada por $\rho(Y)$, s una función que mapea el soporte de $Y$, $\mathcal{Y}$ a la recta real, i.e. $\rho:Y\rightarrow \Re$.
+	\end{definition}
+	
+	Recuerda que $Y$ es una variable aleatoria positiva, cuando ésta mide el monto del portafolio de reclamos, por ejemplo. Sin embargo, en ciertas aplicaciones, se desea estudiar la variación del valor del portafolio entre los periodos $(t-1)$ y $t$. En este caso, la variable $Y=S_{t}-S_{t-1}$ puede tomar valores negativos.   
+
+	Denotemos por $\mu_Y$ y $\sigma_Y$ a la media y a la varianza de la variable aleatoria $X$. 
+	
+	\begin{definition}
+	La {\bf medida de riesgo basada en la esperanza} se define como
+	\begin{equation}
+		\rho(Y) = (1+\theta)\mu_Y,
+	\end{equation}
+	donde $\theta\geq 0$ es el factor de la prima de riesgo. Cuando $\theta=0$, la medida de riesgo se reduce a $\mu_Y$, la cual se conoce como {\bf prima de riesgo pura}.  
+	\end{definition}
+	
+	Para diferenciar entre dos riesgos en términos del segundo momento, se introduce una medida de riesgo en función de $\mu_Y$ y $\sigma_Y$.
+	
+	\begin{definition} 
+	La {\bf medida de riesgo basada en varianza} se define como
+	\begin{equation}
+		\rho(Y) = \mu_Y + \alpha \sigma_Y,
+	\end{equation}
+	donde $\alpha\geq 0$ es el factor de riesgo. La medida de riesgo anterior puede definirse alternativmente en términos de la desviación estándar de $Y$, como 
+	\begin{equation}
+		\rho(Y) = \mu_Y + \alpha \sigma_Y^{1/2}.
+	\end{equation}
+	Cuando $\alpha=0$ la medida de riesgo se reduce a la {\bf prima de riesgo pura}.
+	\end{definition} 
+	
+	Es deseable que las medidas de riesgo satisfagan ciertas condiciones de admisibilidad y coherencia. A continuación revisaremos algunas de esas propiedades.
+	
+	\section{Coherencia}
+	Reviaremos ahora cuatro axiomas de coherencia que garantizarán que las medidas de riesgo sean consistentes (no subjetivas).
+	
+	\begin{axiom}
+	{\bf Invarianza ante traslaciones}. Para cualquier variable de pérdida $Y$ y cualquier constante $a$, 
+	$$\rho(Y+a)=\rho(Y)+a.$$ 
+	\end{axiom}
+	
+	Este axioma indica que el riesgo se incrementa proporcionalmente al aumento en la pérdida, dado por $a$.
+	
+	\begin{axiom}
+	{\bf Subaditividad}. Para cualquier par de variables de pérdida $Y_1$ y $Y_2$, se tiene que  
+	$$\rho(Y_1+Y_2)\leq\rho(Y_1)+\rho(Y_2).$$ 
+	\end{axiom}
+
+	Es decir, el riesgo no se reduce al fragmentarse en partes. De igual forma, consolidar riesgos no reduce su exposición.
+	
+	\begin{axiom}
+	{\bf Homogeneidad positiva}. Para cualquier variable de pérdida $Y$ y cualquier escalar positivo $a$, se tiene que  
+	$$\rho(a Y) = a \rho(Y).$$
+	\end{axiom}
+
+	Es decir, el riesgo es invariante ante cambios de escala o unidades monetarias.
+	 
+	\begin{axiom}
+	{\bf Monotonicidad}. Para cualquier par de variables de pérdida $Y_1$ y $Y_2$ tales que $Y_1\leq Y_2$ casi seguramente (i.e. con probabilidad uno), se tiene que  
+	$$\rho(Y_1) \leq \rho(Y_2)$$ 
+	\end{axiom}
+	
+	Los axiomas anteriores definen un marco normativo para definir medidas de riesgo consistentes a la teoría de decisión. Se dice que una medida de riesgo que satisfaga los cuatro axiomas enunciados es coherente. Es fácil mostrar que las tres medidas de riesgo que revisamos al principio del capítulo satisfacen ser coehentes. Sin embargo, alguns de ellas resultan ser operativamente imprácticas. A continuación, revisaremos otras medidas de riesgo basadas en capital, las cuales son operativamente más convenientes.
+	
+	\section{Medidas de riesgo de capital}
+
+	La medida de riesgo que más se emplea en la práctica, no solo en las compañías de seguros sino en otras instituciones bancarias y financieras, es el VaR ({\it Value-at-Risk}). Para esto, supongamos que $Y\sim F_{Y}$, la cual puede ser discreta, continua o mixta.
+	
+	\begin{definition}
+	Sea $\delta \in (0,1)$ un nivel de probabilidad dado. El valor en riesgo, $\riskvar$ (por sus siglas en inglés), de $Y$ al nivel $\delta$, denotado por $\riskvar_{\delta}(Y)$ se define como el cuantil $\delta$ de $F_Y$, i.e.
+	\begin{eqnarray} 
+	\riskvar_{\delta}(Y)
+		& = &
+		\inf\left\{ y\in \mathcal{Y}: F_{Y}(y)\geq \delta \right\}
+		\\
+		& = &
+		F_{Y}^{-1}(\delta) = y_{\delta}.
+	\end{eqnarray} 
+	\end{definition}
+	
+	Usualmente, $\delta$ se elige dentro del intervalo $(0.95,0.99)$. 
+	
+	Para algunas distribuciones de probabilidad, el $\riskvar$ se puede obtener analíticamente. Por ejemplo, si $Y$ se distribuye $\ExpD(\theta)$, 
+	\begin{equation}
+		\riskvar_{\delta}(Y)
+			=
+			-\frac{\log(1-\delta)}{\theta}.
+	\end{equation}
+
+	Si $Y$ se distribuye log-normal, con parámetros $\mu_Y$ y $\sigma_Y$, entonces
+	\begin{equation}
+		\riskvar_{\delta}(Y)
+			=
+			-\exp\left\{ \mu_Y + \sigma_{Y}^{1/2}\Phi^{-1}(\delta) \right\}.
+	\end{equation}
+
+	Si $Y$ se distribuye Pareto, con parámetros $\alpha$ y $\gamma$, entonces
+	\begin{equation}
+		\riskvar_{\delta}(Y)
+			=
+			- \gamma\left( (1-\delta)^{-1/\alpha} -1 \right).
+	\end{equation}
+	
+	Otra medida de riesgo de interés, más académico, es el VaR condicional ($\riskcvar$, por sus sigla en inglés), que mide el riesgo esperado en exceso del VaR.
+	\begin{definition}
+	El $\riskvar$ condicional ($\riskcvar$) para un nivel $\delta$ se define como,
+	\begin{eqnarray}
+		\riskcvar_{\delta}(Y)
+			& = &
+			\mathbb{E}\left( Y-\riskvar_{\delta}(Y)|Y > \riskvar_{\delta}(Y) \right).
+	\end{eqnarray}
+
+	El $\riskcvar$ puede expresarse en términos de la cola esperada de la distribución, $\ctaile$ (por sus siglas en inglés), que es el valor esperado de $Y$ en exceso de $\riskcvar_{\delta}(Y)$. Éste se define como,
+	\begin{eqnarray}
+		\ctaile_{\delta}(Y)
+			& = &
+			\mathbb{E}\left( Y | Y > \riskvar_{\delta}(Y) \right).
+			\nonumber \\
+			& = &
+			\frac{1}{1-\delta}\int_{y_{\delta}}^{\infty} yf_{Y}(y)\dd y,
+	\end{eqnarray}
+	donde $y_{\delta}$ es $\riskvar_{\delta}(Y)$.
+	\end{definition}
+
+	A partir de estas relaciones, se sigue la siguiente identidad
+	\begin{equation}
+		\riskcvar_{\delta}(Y)
+			= \ctaile_{\delta}(Y)
+				-
+		\riskvar_{\delta}(Y).
+	\end{equation}
+	
+	Puede mostrarse que tanto el $\riskvar$ como el $\risckvar$ son medidas de riesgo coherentes. Generalizadon la noción del $\riskcvar$, podemos también pensar en la medida de dispersión asociada a la cola de la distribución en exceso de $\riskvar_{\delta}(Y)$, en términos de la varianza, como:
+\begin{eqnarray}
+	\riskcvvar_{\delta}(Y)
+		& = &
+		\var\left( Y|Y > \riskvar_{\delta}(Y) \right)
+		\nonumber \\
+		& = &
+		\frac{1}{1-\delta}\int_{y_{\delta}}^{\infty} (y-\riskcvar_{\delta}(Y))^{2}f_{Y}(y)\dd y.
+\end{eqnarray}
+
+	\section{Medidas de riesgo basadas en primas}
+	La medida de riesgo basada en primas, que discutimos en la primera sección de estas notas, toma en considerción la pérdida esperada de siniestro aumentada por un factor de la prima de riesgo. El factor de la prima de riesgo, $\theta$, desplaza uniformemente la distribución de $Y$. Tal modificación puede no ser conveniente, en caso de querer modular de manera distinta a diferentes partes de la distribución de $Y$ (como la cola derecha). A conmtinuación presentaremos una modificación basada en un índice de aversión al riesgo.\footnote{Este enfoque es aplicado solamente al caso donde $Y$ es una variable aleatoria positiva.}
+	
+	Sea $Y$ la variable aleatoria de pérdida. Supongamos que $Y$ es estrictamente positiva. Así, su esperanza puede calcularse como 
+	\begin{eqnarray}
+		\mu_{Y}
+			& = &
+			\int_{0}^{\infty}y F_{Y}(\dd y)
+			\nonumber \\
+			& = &
+			\int_{0}^{\infty}S_{Y}(y)\dd y,
+	\end{eqnarray}
+	donde $S_{Y}(y)$ es la función de supervivencia asociada con $F_{Y}(y)$. 
+	
+	La modulación para la prima de riesgo se definirá en función de $S_{Y}(y)$ a través de una transformación potencia. Así, en lugar de desplazar la distribución completa de $Y$, se modulará tal distribución en términos de la siguiente transformación,
+	\begin{equation}
+		\tilde{S}_{Y}(y)=S_{Y}(y)^{1/\theta},
+	\end{equation} 
+	donde $\theta\geq 1$ es el {\bf factor de aversión al riesgo}. 
+	
+	Así, la prima de riesgo modulada se calculará con base en la función de supervivencia modificada, como
+	\begin{eqnarray}
+		\rho(Y)
+			& = & \int_{0}^{\infty} \tilde{S}_{Y}(y) \dd y
+			\nonumber \\
+			& = & \int_{0}^{\infty} (S_{Y}(y))^{1/\theta} \dd y.
+	\end{eqnarray}	
+	La característica importante de esta modulación es que ponderá con mayor probabilidad que el desplazamiento a los riesgos de pérdida más altos. La prima de riesgo $\rho(Y)$ se incrementará cuando el factor de aversión al riesgo, $\theta$, sea más grande.
+	
+	\begin{definition}
+	Se dice que la distribución $\tilde{F}_Y$ asociada con $\tilde{S}_Y$ es la {\bf tranformación de riesgo proporcional} de $F_Y$, con parámetro $\theta\geq 1$.
+	\end{definition}
+	
+	\begin{example}
+	Supongamos que $X \sim \ExpD(x|\lambda)$. Así, su función de supervivencia estaría dada por $S_X(x)=e^{-\lambda x}$. Siguiendo el razonamiento anterior, la función de supervivencia de la distribución modificada por el parámetro $\theta$, sería $\tilde{S}_{X}(x)=e^{-\frac{\lambda x}{\theta}}$. De esta forma, la prima de riesgo ajustada sería $\Expec_{\tilde{F}}(X)=\frac{\theta}{\lambda}$, la cual es mayor que la prima de riesgo original (no modificada), dada por $\Expec_{F}(X)=\frac{1}{\lambda}$.
+	\end{example}
+
+	La definición anterior de la distribución modificada viene de la mano con la distribución de riesgos de $Y$, ya que
+	\begin{eqnarray} 
+	 	\tilde{h}_Y(y)
+	 		& = & 
+		 		-
+		 		\frac{1}{\theta}\left( \frac{S_{Y}(y)^{1/\theta-1} S'_{Y}(y)}{S_Y(y)^{1/\theta}} \right),
+		 	\nonumber \\
+	 		& = & 
+		 		\frac{1}{\theta}h_{Y}(y),
+	\end{eqnarray} 
+	donde $S'_{Y}(y)=\frac{\partial}{\partial y}S_{Y}(y)$, y $h_{Y}(y)$ es la función de riesgo asociada con $F_Y$.
+	
+	Otra forma de modular la distribución a emplear para la prima de riesgo, similar al método anterior, consiste en deliveradamente modificar el peso de diferentes regiones de $F_Y$ empleando transformaciones del siguiente tipo,
+	\begin{equation}
+		\tilde{f}_Y(y) = w(y) f_{Y}(y),
+	\end{equation}
+	donde $\tilde{f}_Y$ es la función de densidad asociada con $\tilde{F}_Y$, $f_Y$ es lo mismo para $F_Y$, y $w(y)$ es una función que re-asigna pesos a diferentes valores de $y$. El propósito de este método es el de asignar más masa de probabilidad a la región de la cola derecha de la distriución de $Y$. La transformación que revisaremos en particular, se conoce como la transformación de Esscher.
+	
+	\begin{definition}
+		La {\bf función de ponderación} asociada con la transformación de Esscher se define como,
+		\begin{equation}
+			w(y) = \frac{e^{\theta y}}{M_Y(\theta)},
+		\end{equation}
+		donde $M_Y(\theta)$ es la función generadora de momentos de $Y$ inducida por $F_Y$, i.e. $M_Y(\theta)=\int e^{\theta y}f_Y(y)\dd y.$
+	\end{definition}
+	
+	La distribución de $X$ modificada en $\theta$ se conoce como la Transformación de Esscher de $F$, (recuerda, $X\sim F$). De esta forma, la prima de riesgo moderada puede definirse como la prima de riesgo calculada con $\tilde{F}$, y estaría dada por 
+	\begin{eqnarray}
+		\rho_{\tilde{F}}(X)
+			& = &
+			\int x \tilde{F}_{X}(\dd x)
+			\nonumber \\  
+			& = &
+			\frac{\int x e^{\theta x}f_{X}(x) \dd x}{M_X(\theta)}
+			\nonumber \\  
+			& = &
+			\frac{\Expec_{F}(X e^{\theta X})}{\Expec_{F}(e^{\theta X})}.
+	\end{eqnarray}  
+
+	Adicionalmente, la forma funcional de la modificación de $F$ puede obtenerse a través de la distribución generadora de momentos. Se puede mostrar que la función generadora de momentos de $\tilde{F}$ es,
+	\begin{equation}
+		\tilde{M}_{X}(t) = \frac{M_{X}(\theta+t)}{M_{X}(\theta)}.
+	\end{equation}
+
+	\begin{example}
+	Calculemos la transformación de Esscher para la distribución Exponencial, con parámetro $\lambda$. El factor de riesgo sería dado por $ 0 < \theta < \lambda $. 
+	
+	Recordemos que la función generadora de momentos de la distribución Exponencial está dada por $M_{X}(\theta) = \frac{\lambda}{\laba-\theta}$. De esta forma, la función generadora de momentos de la transformación de Esscher para $X$ sería, 
+	\begin{eqnarray}
+		\tilde{M}_{X}(t)
+		  & = &
+		  \frac{M_{X}(\theta+t)}{M_{X}(\theta)}
+		  \nonumber \\
+		  & = &
+		  \frac{\lambda-\theta}{\lambda-\theta-t}.
+		  \nonumber
+	\end{eqnarray} 
+	De lo anterior deducimos que la transformción de Esscher de $X$ en $\theta$ define a la distribución Exponencial con parámetro $(\lambda-\theta)$. La implicación de este cálculo es que la prima de riesgo de la distribución transformada es mayor que la de la distribución original, i.e. 
+	\begin{equation}
+		\rho_{\tilde{F}}(X) = 
+			\frac{1}{\lambda-\theta} >
+			\frac{1}{\lambda} =
+			\rho_{F}(X).
+	\end{equation}
+	\end{example}
+
+	\section{Medidas de riesgo basadas en distorsiones}
+	
+	\begin{definition}
+		Una función $g(\cdot)$ es de {\bf distorsión} si es no decreciente, cóncava, diferenciable, y satisface que $g(1)=1$ y $g(0)=0$.
+	\end{definition}
+	
+	La función de distorsión es un procedimiento que permite modificar la distribución de $X$ original, $F_X$, mediante un procedimiento de composición de la función de supervivencia asociada, $S_X$, y $g$, siendo ambas no decrecientes. {\it La distorción se define así como la derivada de la composición $g(S_{X}(x))$}. 
+	
+	Bajo los supuestos de la definición anterior, la función de densidad asociada con la distorsión de $F$ está dada por,
+	\begin{equation}
+		\tilde{f}_{X}(x) = g'\left(S_{X}(x)\right)\cdot f_{X}(x).
+	\end{equation}
+	
+	\begin{remark}
+	Note que $g'\left(S_{X}(x)\right)$ es una función decreciente en $x$. Se puede además interpretar a este factor como un reponderador que eleva la función de densidad original de $X$ en el segmento de la cola derecha de la distribución.
+	\end{remark}
+	
+	\begin{definition}
+	Considere la variable de pérdida $X\sim F_{X}$, y una función de distorsión, $g$. La medida de riesgo distorsionada sería dada por
+	\begin{equation}
+		\rho_{\tilde{F}}(X)
+			= \int g\left(S_{X}(x)\right) \dd x. 
+	\end{equation} 
+	Se puede interpretar que la prima de riesgo distorsionada es el valor esperado de $X$ calculado con respecto a la distribución distorsionada de $F$. 
+	\end{definition}
+	
+	\begin{remark}
+	Cabe notar que la prima de riesgo distorsionada incluye como casos particulares a las primas de riesgo que hemos discutido anteriormente.
+	\begin{itemize}
+		\item {\bf Prima de riesgo pura.} La función de distorsión sería la función identidad, $g(y)=y$. 
+		\item {\bf Prima de riesgo ajustada en función de riesgo.} La función de distorsión sería la función potencia, $g(y)=y^{1/\theta}$, con $\theta>0$. 
+		\item {\bf Medida de riesgo VaR.} La función de distorsión sería dada por,
+			\begin{equation}
+				g(y) 
+				=
+				\begin{cases}
+				0 & , \text{para} \ 0 \leq y < 1-\delta \\
+				1 & , \text{para} \ 1-\delta \leq y < 1.
+				\end{cases}
+			\end{equation}
+		\item {\bf Medida de riesgo CTE.} La función de distorsión sería dada por,
+			\begin{equation}
+				g(y) 
+				=
+				\begin{cases}
+				\frac{y}{1-\delta} & , \text{para} \ 0 \leq y < 1-\delta \\
+				1 & , \text{para} \ 1-\delta \leq y < 1.
+				\end{cases}
+			\end{equation}
+		\end{itemize}
+	\end{remark}
+	
+	\begin{remark}
+		Se puede mostrar que la medida de riesgo distrosionada, bajo los supuestos mencionados para $g$, es una medida de riesgo coherente.
+	\end{remark}
+	
+%	----------------------------
+%		Ch7. Teoría de Ruina
+%	----------------------------
+\chapter{Teoría de Ruina}
+
+	\section{Nociones preliminares}
+	En esta sección, vincularemos los temas revisados en las secciones anteriores (distribuciones de frecuencias de siniestros, distribuciones de severidades, modelos agregados) con la operación de una aseguradora en el tiempo. Para este propósito, revisarmos algunas nociones de procesos estocásticos, ya que al indizar en el tiempo las distribuciones antes mencionadas, se definen clases de procesos estocásticos. Seguiremos con la revisión de la noción de ruina.
+	
+	\subsection{Procesos estocásticos}
+	Los procesos estocásticos que revisaremos se definirán en tiempo discreto (escala de tiempo continua con observaciones equidistantes) o en tiempo continuo (escala de tiempo continua con observaciones no equidistantes).
+	
+	\begin{definition} 
+	Un {\bf proceso estocástico en tiempo continuo} se define como una colección de variables aleatorias indizadas por una variable tempora continua, i.e. $\{X(t):t\in\mathcal{T}\}$ tal que $\mathcal{T}$ es un segmento de $\Re$. El proceso estocástico estará caracterizado por la distribución conjunta,
+	\begin{equation}
+		\Pr(X(t_1),\ldots,X(t_n)),
+	\end{equation}
+	para todo $n$ entero y $t_1,\ldots,t_n$ in $\mathcal{T}$
+	\end{definition} 
+
+	\begin{definition} 
+	Un {\bf proceso estocástico con incrementos independientes} se define como una colección de variables aleatorias $\{X(t):t\in\mathcal{T}\}$ tales que para todo $s<t\leq u<v$ las variables $X(t)-X(s)$ y $X(v)-X(u)$ son stocásticamente independientes.
+	\end{definition} 
+
+	\begin{definition} 
+	Un {\bf proceso estocástico con incrementos estacionarios} se define como una colección de variables aleatorias $\{X(t):t\in\mathcal{T}\}$ tales que para todo $s<t$ la distribución de la variable $X(t)-X(s)$ depende solamente de $(t-s)$, el intervalo de tiempo.
+	\end{definition} 
+
+	\begin{definition} 
+	Un {\bf proceso estocástico en tiempo discreto} se define como una colección de variables aleatorias $\{X(t):t\in\mathcal{T}\}$ definido en intervalos $t_1,t_2,\ldtos$ equidistantes, i.e. $t_k-t_{k-1}$ es la misma para todo $k$. Así, estos procesos pueden denotarse como $\{X_{t}\}_{t=0}^{\infty}$. El proceso estocástico estará completamente especificado por,
+	\begin{equation}
+		\Pr(X_k,\ldots,X_{k+s}),
+	\end{equation}
+	para todo $k$ y $s$ enteros positivos.
+	\end{definition} 
+
+	\begin{definition} 
+	Un proceso estocástico en tiempo discreto es {\bf estacionario} si
+	\begin{equation}
+		\Pr(X_k,\ldots,X_{k+s}) = \Pr(X_1,\ldots,X_{s})
+	\end{equation}
+	para todo $k$ y $s$ enteros positivos.
+	\end{definition} 
+	
+	\begin{remark}
+	Similarmente al supuesto de independencia o intercambiabilidad, la noción de estacionaridad hace referencia a la noción de simetría en las observaciones ante traslaciones en el tiempo.
+	\end{remark}
+	
+	\subsection{Modelo Actuarial}
+	En estas notas, empezaremos estudiando los modelos actuariales de de operaciones de seguros medidos en tiempo continuo. Consideremos, para este propósito, el siguiente modelo actuarial de operación de seguros. Definamos la dinámica del capital de una compañía de seguros como $\{U(t):t\in\mathcal{T}\}$, con $\mathcal{T}=[0,\infty)$. En $t=0$, el capital inicial de compañía se denota por $U(0):=U\geq 0$. 
+	
+	Parte de la operación de la compañía de seguros consistirá en recabar primas de seguros de pólizas contratadas. El flujo de los ingresos por este concepto lo denotaremos como $\{P(t):t\in\mathcal{T}\}$. Se supone que en el tiempo $t=0$ el flujo de primas de seguro es nulo, i.e. $P(0)=0$.
+	
+	La operación de la aseguradora incluirá también la salida de recursos por la cobertura de reclamos en los que hayan incurrido sus asegurados. El flujo agregado de estos reclamos a través del tiempo lo denotaremos como $\{S(t):t\in\mathcal{T}\}$. Desde luego, en el tiempo $t=0$ los flujos de salida son nulos, i.e. $S(0)=0$. 
+	\begin{remark}
+		Tanto los reclamos como las pólizas de seguro contratadas se incorporan en diferentes momentos en el tiempo. Así, $P(t)=C_1+\cdot+C_{M(t)}$, donde $M(t)$ es el número de pólizas contratadas por la aseguradora hasta el tiempo $t$.
+		
+		Análogamente, $S(t)=X_1+\ldots+X_{N(t)}$, donde $X_j$ es el $j$-ésimo monto de pérdida (reclamo) individual y $N(t)$ es el número total de reclamos hasta el tiempo $t$.
+	 
+	 	Note que bajo esta definición, la colección de variables $P(t)$ y $S(t)$ son crecientes en $t$.
+	\end{remark}
+	
+	\begin{definition}
+	Un modelo actuarial de operaciones se seguro está definido como la sucesión de capital de la copañía en el tiempo, i.e.
+	\begin{equation}
+		U(t)=U(0)+P(t)-S(t),
+	\end{equation}
+	con $t\in\mathcal{T}$. La colección de variables $\{P(t):t\in\mathcal{T}\}$ se conoce como proceso de primas de seguro, mientras que $\{S(t):t\in\mathcal{T}\}$ se conoce como el proceso de pérdidas agregadas.\footnote{Operativamente, el modelo debería incluir el valor de las primas y pérdidas en el tiempo, así como el flujo de otros gastos y productos de operación. El modelo básico actual omite estos componentes.}
+	\end{definition}
+	 
+	Dos pregunas son de interés para una aseguradora respecto a su operación:
+	\begin{itemize} 
+		\item Dado el capital inicial $U$, en un tiempo dado $t$, cuál es la probabilidad de tener capital negativo al tiempo $(t+s)$, para $s>0$? (Cuando el capital $U(t)<0$ se dice que la compañía incurre en {\bf ruina}). 
+		\item Dado el capital inicial $U$, cuál es el tiempo que la compañía esperaría para incurrir en ruina?
+	\end{itemize} 
+	
+	\subsection{Solvencia y Reaseguro}
+	Las compañías de seguros, como otras instituciones financieras, están sujetas a regulaciones para garantizar su operatividad a manera de que cumplan con la responsbilidad social que les es conferida. Así, las instituciones de seguros deben preservar una operatividad prudencial. Las operaciones prudenciales de una companía se defininen, de manera general, como límites en el cociente de deuda, niveles mínimos de liquidez, restricción en la administración de fondos, entre otros. 
+	
+	Paralelamente al establecimiento de normas regulatorias, las companías de seguros transfieren parte del riesgo que aseguran a reaseguradoras. Quizás alcancemos a discutir un poco cómo incorporar la condición de raseguro en la operación de una compañía de seguros.
+	
+	\section{Modelos de ruina en tiempo continuo}
+	La operación en el tiempo de una companía de seguros puede caracterizarse de diferentes formas. Empecemos con un modelo elemental, conocido como modelo de Cramer-Lundberg.
+	
+	\begin{model}
+	{\bf Modelo Cramer-Lundberg.}
+	Suponga que el capital inicial $U(0)=U$. Suponga además que la compañía de seguros suscribe riesgos independientes tarificados con la prima de riesgo base, $c=(1+\theta)\Expec(X)$, donde $X$ es el monto de pérdida individual de la póliza y $\theta$ es un factor de riesgo. Siguiendo el suspuesto de suscripción, los montos de pérdida (o reclamo) individuales son $i.i.d.$, con $\mu=\Expec(X)$.
+	
+	Suponga un modelo de riesgo colectivo, donde el número de reclamos de seguros es aleatorio. Suponga que el número de reclamos observados al tiempo $t$, $N(t)$, es un proceso estocástico caracterizado por la ley de probabilidad de un proceso Poisson con tasa de intensidad $\lambda>0$. Así, el monto agregado de pérdida al tiempo $t$, $S(t)=\sum_{j=1}^{N(t)}X_j$. De esta forma, los reclamos agregados de la compañía sigue un proceso Poisson compuesto.
+	
+	Adicionalmente, supongamos que la suscripción de nuevas pólizas de la compañía es un proceso determinístico continuo, i.e. instantáneamente se suscribe una nueva póliza. De esta forma, $P(t)=c t$, para $t\in \mathcal{T}$.
+	
+	De esta forma, el proceso del flujo de capital de la companía está dado por
+	\begin{equation}
+		U(t)=U+ct-S(t),
+	\end{equation}
+	donde $S(t)$ es un componente estocástico (y por transitividad, $U(t)$ también lo es).
+	
+	El evento de interés para este modelo es el tiempo que tardaría la compañia de seguros para incurrir en ruina, $$U(t)<0.$$ Así, definimos $\tau^{r}$ como la siguiente variable
+	\begin{equation}
+		 \tau^{r} = \min\left\{ t \in \mathcal{T} : U(t) < 0 \right\}.
+	\end{equation} 
+	La variable $\tau^{r}$ se conoce como {\bf tiempo de ruina}.
+	
+	La pregunta relevante tiene que ver con el nivel de capiptal inicial de la compañía de seguros, ya que $\tau^{r}$ dependen implícitamente de esa cantidad (al igual que del monto de la prima de seguro, $c$, aunque por el momento se omite esta definición). Para un nivel de capital inicial, $U$, se define la probabilidad de incurrir en ruina antes del tiempo $t$ como
+	\begin{equation}
+		\psi(U,t):=\Pr\left( \tau^{r} < t \right),
+	\end{equation}
+	para todo $t\in \mathcal{T}$.
+	
+	La poliza de seguro juega un papel fundamental en este modelo. Una especificación de esta cantidad surge de resolver la siguiente igualdad para $c$,
+	\begin{equation}
+		1+ct = M_{X}(t),
+	\end{equation}
+	donde $M_X(t)$ es la función generadora de momentos del monto individual de reclamo, $X$. La solución, cuando existe, se obtiene como
+	\begin{equation}
+		c = \frac{t}M_{S}(t),
+	\end{equation}
+	donde $M_S(t)$ es la función generadora de momentos del monto agregado de reclamos. El valor de $c$ se conoce como {\bf coeficiente de Lundberg}.
+	\end{model}
+	
+	\begin{remark}
+		En el modelo de Cramer-Lundberg, cuando el coeficiente de Lundberg existe, se puede calcular una cota para la probabilidad de ruina dada por,
+		\begin{equation}
+			\psi(U,t) \leq \psi(U) \leq \exp\{-\alpha U\},
+			\label{eq_cota} 
+		\end{equation}
+		donde
+		\begin{eqnarray}
+			\psi(U)
+				& = & \lim_{t\rightarrow \infty} \psi(U,t),
+				\nonumber
+		\end{eqnarray}
+		y $\alpha$ es el factor de aversión al riesgo asociado con la siguiente tarificación,	
+		\begin{eqnarray}
+			\rho(X)
+				& = &
+				\frac{1}{\alpha}\log\left( \Expec e^{-\alpha S} \right).
+		\end{eqnarray}
+	\end{remark}
+	\begin{proof}
+	Revisemos ahora la derivación de la cota (\ref{eq_cota}) para la probabilidad de ruina. Recordemos, $\{U(t):t\in \mathcal{T}\}$ es un proceso estocástico en tiempo discreto. Así, el proceso viene acompañado por la filtración $\mathcal{F}=\{\mathcal{F}(t):t\in \mathcal{T}\}$ generada por el proceso. La filtración corresponde coloquialmente a la acumulación de información del proceso en cada tiempo $t$. Definamos ahora la transformación $e^{-\alpha U(t)}$, y calculemos su esperanza condicional en términos de la filtración correspondiente,
+	\begin{eqnarray}
+		\Expec\left[ e^{-\alpha U(t+s)}|\mathcal{F}(t) \right]
+			& = &
+			\Expec\left[ e^{-\alpha U(t)} e^{-\alpha(cs-(S(t+s)-S(t)))}|\mathcal{F}(t) \right]
+			\nonumber \\
+			& = &
+			e^{-\alpha U(t)} e^{-\alpha(cs)} \Expec\left[  e^{\alpha((S(s)))} \right]
+			\nonumber \\
+			& = &
+			e^{-\alpha U(t)}.
+			\nonumber
+	\end{eqnarray}
+	De esta forma, el proceso $U(t)$ es una martingala. De ésto, se sigue que $\Expec\left[U(t)\right]=\Expec\left[U(0)\right]$ para todo $t\in\mathcal{T}$ fijo.
+	
+	Ahora, notemos que $\tau^{r}$ es un tiempo de paro de la filtración $\mathcal{F}$. Recordemos de la definición que en general un tiempo de paro de una martingala tiene el propósito de investigar cuando la igualdad $\Expec\left[U(\tau)\right]=\Expec\left[U(0)\right]$ puede extenderse a cualquier $\tau \in \mathcal{T}$ aleatorio (de acuerdo a algún criterio de paro, como el de ruina, por ejemplo). Note que sin pérdida de generalidad, supondremos ahora que $\mathcal{T}=[0,\infty) \cup \{\infty\}$.
+	
+	Para lo anterior, definimos $\tau\in\mathcal{T}$ como una variable aleatoria para la filtración $\mathcal{F}$ si el evento $\{\tau=t\}$ es $\mathcal{F}(t)$-medible (i.e. este evento depende de la información hasta el tiempo $t$, y no de la información en tiempo más adelante de $t$).
+	
+	Para continuar, necesitamos invocar un teorema importante en la teoría de martingalas, el Teorema de Tiempo de Paro (véase, Doob, 1954, {\it Stochastic Processes}, Wiley). El teorema dice que si $\{U(t):t\in\mathcal{T}\}$ define una martingala con filtración $\mathcal{F}$, entonces $\Expec\left[U(\tau)\right]=\Expec\left[U(0)\right]$ si se cumplen las siguientes condiciones:
+	\begin{itemize}
+		\vspace{-0.3cm}
+		\item $\Pr\left[\tau<\infty\right]=1$,
+		\vspace{-0.3cm}
+		\item $\Expec\left[|U(\tau)|\right]< \infty$, y
+		\vspace{-0.3cm}
+		\item $\Expec\left[U(t) \Indicator(\tau>t)\right] \rightarrow 0$ cuando $t\rightarrow \infty$.
+	\end{itemize}
+	
+	Definiendo ahora la variable aleatoria $U(\tau \wedge t)$ como $U(t)$ si $t\leq\tau$ y como $U(\tau)$ si $t>\tau$, que es el proceso parado en el tiempo $\tau$, se sigue que $e^{-\alpha U(\tau \wedge t)}$ es también una martingala. Así,
+	\begin{equation}
+		\Indicator(\tau\leq t) = e^{-\alpha U(\tau \wedge t)}.
+		\nonumber
+	\end{equation}
+	
+	Así, calculando la esperanza em ambos lados de la ecuación anterior con respecto a la ley del proceso se sigue que 
+	\begin{equation}
+		\psi(U,t)\leq e^{-\alpha U}. 
+	\end{equation}
+	Entonces, el resultado se sigue.
+	\end{proof}
+	
+	Por otro lado, la probabilidad de ruina eventual, $\psi(U)$, tiene la siguiente expresión analítca
+	\begin{equation}
+		\psi(U) = \frac{-\alpha U}{\Expec\left[e^{-\alpha\tau}|\tau<\infty\right]}.
+	\end{equation}
+	El resultado sigue de aplicar propiedades de martingales y resultados asintóticos aplicando la desigualdad de Bienaymé-Tchebychev.
+	
+	\begin{example}
+	El caso simple de suponer que la severidad individual de siniestros sigue una distribución exponencial, $X\sim\ExpD(x|\mu)$, con $\Expec(X)=1/\mu$ induce la siguiente expresión para la probabilidad de ruina eventual,
+	\begin{equation}
+		\psi(U) = \frac{1}{1+\theta} \exp\left\{ -\theta U/\mu(1+\theta) \right\}, 
+	\end{equation}
+	donde $\theta$ es el factor de aversión al riesgo.
+	\end{example}
+	
+	\subsection{Casos relevantes al modelo de Cramer-Lundberg}
+	El modelo de Cramer-Lundberg presenta problemas de implementación en dos eventos que pueden presentarse en la práctica comúnmente: i) Colas pesadas en la distribución de las severidades individuales, o ii) Dependencia estocástica en la realización de las severidades individuales. A continuación analizaremos las implicaciones de estos dos casos:
+	
+	\begin{case}
+	{\bf Colas pesadas en las severidades individuales.}
+	Cuando la distribución de las severidades individuales del modelo de pérdida presenta colas pesadas, el modelo de Cramer-Lundberg no puede aplicarse, pues el coeficiente de Lundberg asociado con éste no existe.  Derivemos las condiciones para este resultado. 
+	
+	En el modelo de Cramer-Lundberg, existe una solución no negativa para el coeficiente de Lundberg si la integral,
+	\begin{equation}
+		\int_{0}^{\infty} e^{rx} f_{X}(x)\dd x,
+	\end{equation}
+	está definida en un vecindario alrededor del $0$. Así, la condición para la existencia de esta integral es,
+	\begin{equation}
+		1-F_{X}(x)\leq e^{-rx} \Expec_{F_{X}}(e^{rx}).
+	\end{equation}
+	El resultado lo que sugiere es que la cola derecha de $F_{X}$ está acotada por una curva de decaimiento exponencial. 
+	\end{case}
+	
+	\begin{proposition}
+		Si $F_i$, para $i=1,...,m$ son distribuciones independendientes y existe $\alpha > 0$ tal que $1-F_i(x)=x^{-\alpha}g_i(x)$, con $g_i$ de variación lenta y regular, entonces,
+		\begin{equation}
+			G = F_1 * F_2 * \cdots +F_m,
+		\end{equation}
+		tiene una distribución asintótica en $m$ tal que 
+		\begin{equation}
+			1-G(x) \rightarrow x^{-\alpha}(g_1(x)+\cdots+g_m(x)).
+		\end{equation}
+		De esta forma, $G$ es asintóticamente de variación lenta y regular.
+	\end{proposition}
+	
+	De este resultado se sigue que si las $F_i=F$, para $i=1,\ldots,m$, entonces la distribuciuón de la $m$-ésima convolución de $F$ es asintóticamente distribuida de variación regular, con  
+	\begin{equation}
+		1-F^{*m}(x) \rightarrow n(1-F(x)).
+	\end{equation}
+
+	Si definimos ahora
+	\begin{equation}
+		M_m = \max\{X_i:i=1,\ldots,m\}.
+	\end{equation}
+	Entonces, 
+	\begin{eqnarray}
+		\Pr(M_m > x)
+			& = &
+			1-F^{*m}(x)
+			\nonumber \\
+			& = &
+			(1-F(x))\sum_{k=0}^{m-1}F^{k}(x)
+			\nonumber \\
+			& \rightarrow &
+			
+	\begin{eqnarray}
+
+	\subsection{Fórmula de Beekman}
+	Si bien, la cota de Lundberg es útil para el modelo de Cramer-Lundberg, puede ser inficiente (en los casos donde el gap de la cota es demasiado alto); sin contar los casos donde el factor de Lundberg que mencionamos no existe. Alternativamente, podemos aproximar la probabilidad de ruina eventual de una compañía no estudiando el tiempo de ruina, $\tau$, sino la pérdida agregada máxima,\footnote{Nótese que no existe interés en este enfoque en responder cuándo sucedería la ruina, sino sólo si ésta podría ocurrir.}
+	\begin{equation}
+		L = \max_{t\in\mathcal{T}}\{S(t)-ct\}.
+	\end{equation}
+	
+	Así, la probabilidad de ruina eventual se calcularía como la probabilidad de que la pérdida máxima del proceso de ruina exceda al capital inicial, $U$, i.e.
+	\begin{equation}
+	 	\psi(U) = 1-F_{L}(U) = S_{L}(U),
+	\end{equation}
+	donde $F_{L}$ es la distribución de la máxima pérdida agregada del proceso de ruina y $U$ es el nivel incial del capital de operación.
+	
+	La idea detrás de esta construcción consiste en ver a $L$ como la suma de las diferencias de los niveles históricos más bajos antes de que la copañía incurra en insolvencia, i.e.
+	\begin{equation} 
+		L = \sum_{i=1}^{M} L_i,
+	\end{equation} 
+	donde $M$ es el número de niveles históricos más bajos antes de incurrir in ruina, y $L_i$ es la diferencia del $i$-ésimo nivel de capital más bajo y el $(i+1)$-ésimo siguiente nivel de capital más bajo.
+	
+	Suponiendo que el proceso de capitalización está regido por la ley de un proceso Poisson compuesto, la probabilidad de alcanzar un nivel de capital bajo es homogénea en todo tiempo $t$, en particular es igual a $\psi(0)$; lo mismo para la probabilidad de no alcanzar un nivel de incumplimiento. De acuerdo con la descomposición anterior de $L$, el número de niveles más bajos de capitalización, $M$, es una variable aleatoria, con distribución,
+	\begin{equation} 
+	 	\Pr(M=m)=\psi(0)^{m}(1-\psi(0)).
+	\end{equation} 
+	Así, $M$ sigue un proceso Geométrico compuesto, siendo $L_i$ la variable secundaria.
+	
+	Un resultado relevante de lo anterior es el siguiente. Si $S(t)$ sigue un proceso Poisson compuesto homogéneo, y el nivel de capital inicial es nulo, asumiendo que el coeficiente de Lundberg existe, entonces
+	\begin{equation}
+		\Pr\left( -\infty < U(t) \leq -y, \tau < \infty | U(0)=0 \right) 
+			= \frac{\lambda}{c}\int_{y}^{\infty}(1-F(u))\dd u.
+	\end{equation}
+	Esta última probabilidad se interpreta como la probabilidad de que la ruina ocurra con una severidad negativa mayor a $y$ cuando el capital inicial es igual a $0$ (se puede condicionar en un capital inicial mayor a $0$ indistintamente).  
+	
+	Del resultado anterior, se sigue que 
+	\begin{equation}
+		\psi(0) = \frac{1}{1+\theta},	
+	\end{equation}
+	donde $\theta$ es el factor de aversión al riesgo.
+	
+	Así, el cálculo de la probabilidad de ruina para un nivel de capital inicial $U$, $\psi(U)$, puede derivarse como,
+	\begin{equation}
+		\psi(U) = \sum_{m=0}^{\infty} \frac{1}{1+\theta} \left(1- \frac{1}{1+\theta}\right)^{m}
+		\left(1-F_{I}(U)^{*m}\right),
+	\end{equation}
+	donde $F_{I}^{*m}(U)$ es la $m$-ésima convolución de $F_{I}$, con
+	\begin{equation}
+		F_{I}(U) = \frac{1}{\mu}\int_{0}^{U}(1-F_{X}(y))\dd y.
+	\end{equation}
+	La encuación anterior se conoce como fórmula de recursión de Beekman.
+
+	Siendo $L$ la máxima pérdida registrada, se puede calcular la función generadora de momentos asociada, la cual es inducida por el proceso Geométrico compuesto para $L$, como
+	\begin{eqnarray}
+		M_{L}(r)
+			& = &
+			M_{M}(\log M_{L_i}(r))
+			\nonumber \\
+			& = &
+			\frac{\frac{1}{1+\theta}}{1-\left( 1-\frac{1}{1+\theta} \right)M_{L_i}(r)},
+			\nonumber 
+	\end{eqnarray}
+	con
+	\begin{equation}
+		M_{L_i}(r)= \frac{1}{\mu}\int_{0}^{\infty} e^{ry}(1-F_{X}(y))\dd y.
+	\end{equation}
+
+	\section{Modelos de ruina en tiempo discreto}
+	
+	
+%%	----------------------------
+%%		Ch8. Conclusiones
+%%	----------------------------
+%\chapter{Conclusiones}
+%	
+%	Algunos comentarios finales...
+	
+%=======================================================
+%		References
+%=======================================================
+\bibliographystyle{apalike}
+\bibliography{References_JCMO}
+
+\end{document}
+%
+%	--	FIN --
